@@ -6,7 +6,7 @@ KBD(VK_1,CLICK,30)
 KBD(VK_CTRL,UP,30)
 //「Ctrl」＋「1」を押下(Chromeで1つ目のタブを選択する)
 
-WHILE (CHKIMG("マクロ必要データ\スプレッドシート.BMP")=FALSE)
+WHILE (CHKIMG("data\icon_spread-sheet.BMP")=FALSE)
 SLEEP(0.01)
 WEND
 
@@ -23,7 +23,7 @@ KBD(VK_2,CLICK,15)
 KBD(VK_CTRL,UP,15)
 //「Ctrl」＋「2」を押下(Chromeで2つ目のタブを選択する)
 
-WHILE (CHKIMG("マクロ必要データ\kintone.BMP")=FALSE)
+WHILE (CHKIMG("data\icon_kintone.BMP")=FALSE)
 SLEEP(0.01)
 WEND
 
@@ -57,18 +57,18 @@ KBD(VK_RETURN,CLICK,15)
 
 //ここまででIMEI検索
 //検索結果が出るまで待機
-WHILE (CHKIMG("マクロ必要データ\検索結果無し2.BMP")=FALSE)
+WHILE (CHKIMG("data\status_no-results.BMP")=FALSE)
 SLEEP(0.01)
-IF CHKIMG("マクロ必要データ\すべてのレコード.BMP")=TRUE THEN BREAK
+IF CHKIMG("data\status_found-results.BMP")=TRUE THEN BREAK
 WEND
 
-WHILE (CHKIMG("マクロ必要データ\すべてのレコード.BMP")=FALSE)
+WHILE (CHKIMG("data\status_found-results.BMP")=FALSE)
 SLEEP(0.01)
-IF CHKIMG("マクロ必要データ\検索結果無し2.BMP")=TRUE THEN BREAK
+IF CHKIMG("data\status_no-results.BMP")=TRUE THEN BREAK
 WEND
 
 
-IFB CHKIMG("マクロ必要データ\検索結果無し2.BMP", -1)=FALSE
+IFB CHKIMG("data\status_no-results.BMP", -1)=FALSE
 	KBD(VK_TAB,CLICK,15)
 	KBD(VK_TAB,CLICK,15)
 	KBD(VK_TAB,CLICK,15)
@@ -92,7 +92,7 @@ IFB CHKIMG("マクロ必要データ\検索結果無し2.BMP", -1)=FALSE
 	SLEEP(0.1)
 
 	//レコード詳細の表示まで待機
-	WHILE (CHKIMG("マクロ必要データ\故障内容.BMP")=FALSE)
+	WHILE (CHKIMG("data\status_finish-loading-results.BMP")=FALSE)
 	SLEEP(0.01)
 	WEND
 
@@ -128,27 +128,27 @@ IFB CHKIMG("マクロ必要データ\検索結果無し2.BMP", -1)=FALSE
 
 	//ルックアップ取得まで待機
 	SLEEP(0.1)
-	WHILE (CHKIMG("マクロ必要データ\nodata_new.BMP")=FALSE)
+	WHILE (CHKIMG("data\lookup_nodata.BMP")=FALSE)
 	SLEEP(0.01)
-		IF CHKIMG("マクロ必要データ\参照先.BMP")=TRUE OR CHKIMG("マクロ必要データ\ルックアップ選択画面.BMP")=TRUE THEN BREAK
+		IF CHKIMG("data\lookup_success.BMP")=TRUE OR CHKIMG("data\lookup_selection.BMP")=TRUE THEN BREAK
 	WEND
 	SLEEP(0.1)
 
 	SLEEP(0.1)
-	WHILE (CHKIMG("マクロ必要データ\参照先.BMP")=FALSE)
+	WHILE (CHKIMG("data\lookup_success.BMP")=FALSE)
 	SLEEP(0.01)
-		IF CHKIMG("マクロ必要データ\nodata_new.BMP")=TRUE OR CHKIMG("マクロ必要データ\ルックアップ選択画面.BMP")=TRUE THEN BREAK
+		IF CHKIMG("data\lookup_nodata.BMP")=TRUE OR CHKIMG("data\lookup_selection.BMP")=TRUE THEN BREAK
 	WEND
 	SLEEP(0.1)
 
 	SLEEP(0.1)
-	WHILE (CHKIMG("マクロ必要データ\ルックアップ選択画面.BMP")=FALSE)
+	WHILE (CHKIMG("data\lookup_selection.BMP")=FALSE)
 	SLEEP(0.01)
-		IF CHKIMG("マクロ必要データ\nodata_new.BMP")=TRUE OR CHKIMG("マクロ必要データ\参照先.BMP")=TRUE THEN BREAK
+		IF CHKIMG("data\lookup_nodata.BMP")=TRUE OR CHKIMG("data\lookup_success.BMP")=TRUE THEN BREAK
 	WEND
 	SLEEP(0.1)
 
-	IFB CHKIMG("マクロ必要データ\nodata_new.BMP", -1)=TRUE
+	IFB CHKIMG("data\lookup_nodata.BMP", -1)=TRUE
 		// KBD(VK_SHIFT,DOWN,50)
 		// KBD(VK_TAB,DOWN,50)
 		// KBD(VK_SHIFT,UP,50)
@@ -243,40 +243,40 @@ IFB CHKIMG("マクロ必要データ\検索結果無し2.BMP", -1)=FALSE
 
 		//ルックアップ取得まで待機
 		SLEEP(0.1)
-		WHILE (CHKIMG("マクロ必要データ\nodata_new.BMP")=FALSE)
+		WHILE (CHKIMG("data\lookup_nodata.BMP")=FALSE)
 		SLEEP(0.01)
-			IF CHKIMG("マクロ必要データ\参照先.BMP")=TRUE OR CHKIMG("マクロ必要データ\ルックアップ選択画面.BMP")=TRUE THEN BREAK
+			IF CHKIMG("data\lookup_success.BMP")=TRUE OR CHKIMG("data\lookup_selection.BMP")=TRUE THEN BREAK
 		WEND
 		SLEEP(0.1)
 
 		SLEEP(0.1)
-		WHILE (CHKIMG("マクロ必要データ\参照先.BMP")=FALSE)
+		WHILE (CHKIMG("data\lookup_success.BMP")=FALSE)
 		SLEEP(0.01)
-			IF CHKIMG("マクロ必要データ\nodata_new.BMP")=TRUE OR CHKIMG("マクロ必要データ\ルックアップ選択画面.BMP")=TRUE THEN BREAK
+			IF CHKIMG("data\lookup_nodata.BMP")=TRUE OR CHKIMG("data\lookup_selection.BMP")=TRUE THEN BREAK
 		WEND
 		SLEEP(0.1)
 
 		SLEEP(0.1)
-		WHILE (CHKIMG("マクロ必要データ\ルックアップ選択画面.BMP")=FALSE)
+		WHILE (CHKIMG("data\lookup_selection.BMP")=FALSE)
 		SLEEP(0.01)
-			IF CHKIMG("マクロ必要データ\nodata_new.BMP")=TRUE OR CHKIMG("マクロ必要データ\参照先.BMP")=TRUE THEN BREAK
+			IF CHKIMG("data\lookup_nodata.BMP")=TRUE OR CHKIMG("data\lookup_success.BMP")=TRUE THEN BREAK
 		WEND
 		SLEEP(0.1)
 
-		IFB CHKIMG("マクロ必要データ\ルックアップ選択画面.BMP")=TRUE
+		IFB CHKIMG("data\lookup_selection.BMP")=TRUE
 			KBD(VK_TAB,CLICK,15)
 			KBD(VK_TAB,CLICK,15)
 			KBD(VK_TAB,CLICK,15)
-			KBD(VK_SPACE,CLICK,50)//ルックアップ選択画面が出たら一番上のレコードを選択する
+			KBD(VK_SPACE,CLICK,50)//lookup_selectionが出たら一番上のレコードを選択する
 		ELSE
-			//ルックアップ選択画面が出なかったら何もしない
+			//lookup_selectionが出なかったら何もしない
 		ENDIF
 		//ここまでルックアップを取得する
 
 		SLEEP(0.01)
 		//1秒待機する
 
-		IFB CHKIMG("マクロ必要データ\nodata2.BMP")=TRUE THEN
+		IFB CHKIMG("data\lookup_nodata_故障交換.BMP")=TRUE THEN
 			MSGBOX("複数台契約の可能性があります。プログラムを終了します。最初からやり直してください。")
 			SLEEP(1)
 			DOSCMD("taskkill /im UWSC.exe /f")
@@ -288,13 +288,13 @@ IFB CHKIMG("マクロ必要データ\検索結果無し2.BMP", -1)=FALSE
 	
 	ELSE
 		//「データがありません。」が出なかった場合のみ他の動作を行う
-		IFB CHKIMG("マクロ必要データ\ルックアップ選択画面.BMP")=TRUE
+		IFB CHKIMG("data\lookup_selection.BMP")=TRUE
 			KBD(VK_TAB,CLICK,15)
 			KBD(VK_TAB,CLICK,15)
 			KBD(VK_TAB,CLICK,15)
-			KBD(VK_SPACE,CLICK,50)//ルックアップ選択画面が出たら一番上のレコードを選択する
+			KBD(VK_SPACE,CLICK,50)//lookup_selectionが出たら一番上のレコードを選択する
 		ELSE
-			//ルックアップ選択画面が出なかったら何もしない
+			//lookup_selectionが出なかったら何もしない
 		ENDIF
 
 		KBD(VK_TAB,CLICK,50)
@@ -321,9 +321,9 @@ IFB CHKIMG("マクロ必要データ\検索結果無し2.BMP", -1)=FALSE
 		KBD(VK_TAB,CLICK,15)
 		KBD(VK_TAB,CLICK,15)
 
-		IFB CHKIMG("マクロ必要データ\返却済.BMP")=TRUE OR  CHKIMG("マクロ必要データ\解約済返却済.BMP")=TRUE OR CHKIMG("マクロ必要データ\解約済.BMP")=TRUE OR CHKIMG("マクロ必要データ\返送確認_解約.BMP")=TRUE
+		IFB CHKIMG("data\lookup_result_返却済.BMP")=TRUE OR  CHKIMG("data\lookup_result_解約済返却済.BMP")=TRUE OR CHKIMG("data\lookup_result_解約済.BMP")=TRUE OR CHKIMG("data\lookup_result_返送確認-解約.BMP")=TRUE
 			//ぽにゃぽにゃ(マクロを回す前に解約・検品完了していた場合)開始
-			IFB CHKIMG("マクロ必要データ\顧客使用中.BMP")=TRUE
+			IFB CHKIMG("data\device_status_顧客使用中.BMP")=TRUE
 				KBD(VK_RIGHT,CLICK,15)
 				KBD(VK_RIGHT,CLICK,15)
 				KBD(VK_RIGHT,CLICK,15)
@@ -334,7 +334,7 @@ IFB CHKIMG("マクロ必要データ\検索結果無し2.BMP", -1)=FALSE
 			//ぽにゃぽにゃ終了
 		ELSE
 
-			IFB CHKIMG("マクロ必要データ\その他_速度出ない等.BMP")=TRUE AND CHKIMG("マクロ必要データ\返却済.BMP")=FALSE AND CHKIMG("マクロ必要データ\解約済返却済.BMP")=FALSE AND CHKIMG("マクロ必要データ\解約済.BMP")=FALSE AND CHKIMG("マクロ必要データ\返送確認_解約.BMP")=FALSE AND CHKIMG("マクロ必要データ\返送確認_故障交換.BMP")=FALSE
+			IFB CHKIMG("data\device_status_その他-速度出ない等.BMP")=TRUE AND CHKIMG("data\lookup_result_返却済.BMP")=FALSE AND CHKIMG("data\lookup_result_解約済返却済.BMP")=FALSE AND CHKIMG("data\lookup_result_解約済.BMP")=FALSE AND CHKIMG("data\lookup_result_返送確認-解約.BMP")=FALSE AND CHKIMG("data\lookup_result_返送確認-故障交換.BMP")=FALSE
 				KBD(VK_LEFT,CLICK,15)
 				KBD(VK_LEFT,CLICK,15)
 				KBD(VK_LEFT,CLICK,15)
@@ -346,8 +346,8 @@ IFB CHKIMG("マクロ必要データ\検索結果無し2.BMP", -1)=FALSE
 			ENDIF
 
 
-			IFB CHKIMG("マクロ必要データ\顧客使用中.BMP")=FALSE
-				IFB CHKIMG("マクロ必要データ\AiR_貸出用.BMP")=FALSE
+			IFB CHKIMG("data\device_status_顧客使用中.BMP")=FALSE
+				IFB CHKIMG("data\device_status_AiR-貸出用.BMP")=FALSE
 					KBD(VK_LEFT,CLICK,15)
 					KBD(VK_LEFT,CLICK,15)
 					KBD(VK_LEFT,CLICK,15)
@@ -370,7 +370,7 @@ IFB CHKIMG("マクロ必要データ\検索結果無し2.BMP", -1)=FALSE
 	KBD(VK_CTRL,UP,50)//顧客データを保存する
 
 
-	WHILE (CHKIMG("マクロ必要データ\↑.BMP")=FALSE)
+	WHILE (CHKIMG("data\status_save-complete.BMP")=FALSE)
 	SLEEP(0.01)
 	WEND
 
