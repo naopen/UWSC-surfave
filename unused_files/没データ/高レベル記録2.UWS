@@ -1,0 +1,5 @@
+id = GETID("20200421_管理画面(格納庫)顧客一覧37688991_移管担当者 - Google スプレッドシート - Google Chrome", "Chrome_WidgetWin_1", -1)
+SLEEP(1)
+SENDSTR(id, "869714042181285", 2, True)
+CLKITEM(id, "取得", CLK_BTN)
+CLKITEM(id, "保存", CLK_BTN)

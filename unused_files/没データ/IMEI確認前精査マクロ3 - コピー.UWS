@@ -1,0 +1,5 @@
+IF CHKIMG("C:\Users\surfave01\Desktop\マクロ\マクロ必要データ\返却済.BMP",0,100,300,400,500)=TRUE THEN EXITEXIT
+
+FUKIDASI("エラー")
+SLEEP(1)
+

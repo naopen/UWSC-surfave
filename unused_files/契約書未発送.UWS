@@ -1,0 +1,13 @@
+
+ACW(GETID("AiR-WiFi 顧客リスト（本番） - 2790 - レコードの詳細 - Google Chrome","Chrome_WidgetWin_1"),0,0,0,0,0)
+
+For i= 1 to 176
+
+SLEEP(0.3)
+BTN(LEFT,CLICK,132,464,219)
+SLEEP(0.3)
+BTN(LEFT,CLICK,284,940,188)
+SLEEP(0.3)
+BTN(LEFT,CLICK,1556,467,250)
+
+next
