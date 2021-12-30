@@ -46,7 +46,7 @@ KBD(VK_RETURN,CLICK,30)
 //EnterƒL[‚ğ‰Ÿ‰º
 
 //‚±‚±‚Ü‚Å‚ÅIMEIŒŸõ
-SLEEP(2)
+SLEEP(2.5)
 
 IFB CHKIMG("data\status_no-results.BMP", -1)=FALSE
 	KBD(VK_TAB,CLICK,2000)
