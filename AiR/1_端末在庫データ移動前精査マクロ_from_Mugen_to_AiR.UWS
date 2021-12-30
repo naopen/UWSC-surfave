@@ -48,7 +48,7 @@ KBD(VK_RETURN,CLICK,30)
 //ここまででIMEI検索
 SLEEP(2)
 
-IFB CHKIMG("マクロ必要データ\検索結果無し2.BMP", -1)=FALSE
+IFB CHKIMG("data\status_no-results.BMP", -1)=FALSE
 	KBD(VK_TAB,CLICK,2000)
 	KBD(VK_TAB,CLICK,15)
 	KBD(VK_TAB,CLICK,15)
@@ -93,13 +93,13 @@ IFB CHKIMG("マクロ必要データ\検索結果無し2.BMP", -1)=FALSE
 	KBD(VK_TAB,CLICK,15)
 	//Tabキーを20回押して、「ステータス状況」に移動する
 
-	IFB CHKIMG("マクロ必要データ\AiR_WiFi_マクロ使用データ\AiR_顧客使用中.BMP")=TRUE
+	IFB CHKIMG("data\device_status_顧客使用中.BMP")=TRUE
 		KBD(VK_LEFT,CLICK,15)//もし検品時にステータスが「顧客使用中」にされていたら、その分左矢印キーを1回押下する
 	ELSE
 		//もし検品時にステータスが「顧客使用中」にされてなかったら、何もしない
 	ENDIF
 	
-	IFB CHKIMG("マクロ必要データ\AiR_WiFi_マクロ使用データ\AiR_不明.BMP")=TRUE
+	IFB CHKIMG("data\device_status_不明.BMP")=TRUE
 		KBD(VK_LEFT,CLICK,15)
 		KBD(VK_LEFT,CLICK,15)
 		//もし検品時にステータスが「不明」にされていたら、その分左矢印キーを2回押下する
@@ -107,7 +107,7 @@ IFB CHKIMG("マクロ必要データ\検索結果無し2.BMP", -1)=FALSE
 		//もし検品時にステータスが「不明」にされてなかったら、何もしない
 	ENDIF
 
-	IFB CHKIMG("マクロ必要データ\AiR_WiFi_マクロ使用データ\AiR_在庫U2s100GB.BMP")=TRUE
+	IFB CHKIMG("data\device_status_在庫U2s100GB.BMP")=TRUE
 		KBD(VK_LEFT,CLICK,15)
 		KBD(VK_LEFT,CLICK,15)
 		KBD(VK_LEFT,CLICK,15)
@@ -116,7 +116,7 @@ IFB CHKIMG("マクロ必要データ\検索結果無し2.BMP", -1)=FALSE
 		//もし検品時にステータスが「在庫U2s100GB」にされてなかったら、何もしない
 	ENDIF
 
-	IFB CHKIMG("マクロ必要データ\AiR_WiFi_マクロ使用データ\AiR_在庫U2s制限なし.BMP")=TRUE
+	IFB CHKIMG("data\device_status_在庫U2s制限なし.BMP")=TRUE
 		KBD(VK_LEFT,CLICK,15)
 		KBD(VK_LEFT,CLICK,15)
 		KBD(VK_LEFT,CLICK,15)
@@ -125,7 +125,7 @@ IFB CHKIMG("マクロ必要データ\検索結果無し2.BMP", -1)=FALSE
 		//もし検品時にステータスが「在庫U2s制限なし」にされてなかったら、何もしない
 	ENDIF
 
-	IFB CHKIMG("マクロ必要データ\AiR_WiFi_マクロ使用データ\AiR_在庫U3.BMP")=TRUE
+	IFB CHKIMG("data\device_status_在庫U3.BMP")=TRUE
 		KBD(VK_LEFT,CLICK,15)
 		KBD(VK_LEFT,CLICK,15)
 		KBD(VK_LEFT,CLICK,15)
@@ -135,7 +135,7 @@ IFB CHKIMG("マクロ必要データ\検索結果無し2.BMP", -1)=FALSE
 		//もし検品時にステータスが「在庫U3」にされてなかったら、何もしない
 	ENDIF
 
-	IFB CHKIMG("マクロ必要データ\AiR_WiFi_マクロ使用データ\AiR_在庫G4.BMP")=TRUE
+	IFB CHKIMG("data\device_status_在庫G4.BMP")=TRUE
 		KBD(VK_LEFT,CLICK,15)
 		KBD(VK_LEFT,CLICK,15)
 		KBD(VK_LEFT,CLICK,15)
@@ -146,7 +146,7 @@ IFB CHKIMG("マクロ必要データ\検索結果無し2.BMP", -1)=FALSE
 		//もし検品時にステータスが「在庫G4」にされてなかったら、何もしない
 	ENDIF
 
-	IFB CHKIMG("マクロ必要データ\AiR_WiFi_マクロ使用データ\AiR_レンタル.BMP")=TRUE
+	IFB CHKIMG("data\device_status_レンタル.BMP")=TRUE
 		KBD(VK_LEFT,CLICK,15)
 		KBD(VK_LEFT,CLICK,15)
 		KBD(VK_LEFT,CLICK,15)
@@ -158,7 +158,7 @@ IFB CHKIMG("マクロ必要データ\検索結果無し2.BMP", -1)=FALSE
 		//もし検品時にステータスが「レンタル」にされてなかったら、何もしない
 	ENDIF
 
-	IFB CHKIMG("マクロ必要データ\AiR_WiFi_マクロ使用データ\AiR_社内用在庫.BMP")=TRUE
+	IFB CHKIMG("data\device_status_社内用在庫.BMP")=TRUE
 		KBD(VK_LEFT,CLICK,15)
 		KBD(VK_LEFT,CLICK,15)
 		KBD(VK_LEFT,CLICK,15)
@@ -171,7 +171,7 @@ IFB CHKIMG("マクロ必要データ\検索結果無し2.BMP", -1)=FALSE
 		//もし検品時にステータスが「社内用在庫」にされてなかったら、何もしない
 	ENDIF
 
-	IFB CHKIMG("マクロ必要データ\AiR_WiFi_マクロ使用データ\AiR_故障.BMP")=TRUE
+	IFB CHKIMG("data\device_status_故障.BMP")=TRUE
 		KBD(VK_LEFT,CLICK,15)
 		KBD(VK_LEFT,CLICK,15)
 		KBD(VK_LEFT,CLICK,15)
@@ -185,7 +185,7 @@ IFB CHKIMG("マクロ必要データ\検索結果無し2.BMP", -1)=FALSE
 		//もし検品時にステータスが「故障」にされてなかったら、何もしない
 	ENDIF
 
-	IFB CHKIMG("マクロ必要データ\AiR_WiFi_マクロ使用データ\AiR_AIR-U修理中.BMP")=TRUE
+	IFB CHKIMG("data\device_status_AIR-U修理中.BMP")=TRUE
 		KBD(VK_LEFT,CLICK,15)
 		KBD(VK_LEFT,CLICK,15)
 		KBD(VK_LEFT,CLICK,15)
@@ -200,7 +200,7 @@ IFB CHKIMG("マクロ必要データ\検索結果無し2.BMP", -1)=FALSE
 		//もし検品時にステータスが「AIR-U修理中」にされてなかったら、何もしない
 	ENDIF
 
-	IFB CHKIMG("マクロ必要データ\AiR_WiFi_マクロ使用データ\AiR_その他（速度出ない等）.BMP")=TRUE
+	IFB CHKIMG("data\device_status_その他（速度出ない等）.BMP")=TRUE
 		KBD(VK_LEFT,CLICK,15)
 		KBD(VK_LEFT,CLICK,15)
 		KBD(VK_LEFT,CLICK,15)
@@ -216,7 +216,7 @@ IFB CHKIMG("マクロ必要データ\検索結果無し2.BMP", -1)=FALSE
 		//もし検品時にステータスが「その他(速度出ない等)」にされてなかったら、何もしない
 	ENDIF
 
-	IFB CHKIMG("マクロ必要データ\AiR_WiFi_マクロ使用データ\AiR_端末消失.BMP")=TRUE
+	IFB CHKIMG("data\device_status_端末消失.BMP")=TRUE
 		KBD(VK_LEFT,CLICK,15)
 		KBD(VK_LEFT,CLICK,15)
 		KBD(VK_LEFT,CLICK,15)
@@ -233,7 +233,7 @@ IFB CHKIMG("マクロ必要データ\検索結果無し2.BMP", -1)=FALSE
 		//もし検品時にステータスが「端末消失」にされてなかったら、何もしない
 	ENDIF
 
-	IFB CHKIMG("マクロ必要データ\AiR_WiFi_マクロ使用データ\AiR_確認中.BMP")=TRUE
+	IFB CHKIMG("data\device_status_確認中.BMP")=TRUE
 		KBD(VK_RIGHT,CLICK,15)//もし検品時にステータスが「確認中」にされていたら、その分右矢印キーを1回押下する
 	ELSE
 		//もし検品時にステータスが「確認中」にされてなかったら、何もしない
