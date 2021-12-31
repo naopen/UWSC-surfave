@@ -148,7 +148,7 @@ IFB CHKIMG("data\status_no-results.BMP")=FALSE
 
 
 
-	IFB CHKIMG("data\lookup_nodata.BMP", -1)=TRUE
+	IFB CHKIMG("data\lookup_nodata.BMP")=TRUE
 		MSGBOX("顧客リストをルックアップした結果、当該IMEIがありませんでした。プログラムを終了します。最初からやり直してください。")
 		SLEEP(1)
 		DOSCMD("taskkill /im UWSC.exe /f")
@@ -201,209 +201,234 @@ IFB CHKIMG("data\status_no-results.BMP")=FALSE
 
 		// //「データがありません。」の場合はさすがに「1回目交換履歴ルックアップ」に居るだろうと信じてループ終了
 	
-ELSE
-	//「データがありません。」が出なかった場合のみ他の動作を行う
-	IFB CHKIMG("data\lookup_selection.BMP")=TRUE
-		KBD(VK_TAB,CLICK,15)
-		KBD(VK_TAB,CLICK,15)
-		KBD(VK_TAB,CLICK,15)
-		KBD(VK_SPACE,CLICK,50)//ルックアップ選択画面が出たら一番上のレコードを選択する
 	ELSE
-		//ルックアップ選択画面が出なかったら何もしない
-	ENDIF
+		//「データがありません。」が出なかった場合のみ他の動作を行う
+		IFB CHKIMG("data\lookup_selection.BMP")=TRUE
+			KBD(VK_TAB,CLICK,15)
+			KBD(VK_TAB,CLICK,15)
+			KBD(VK_TAB,CLICK,15)
+			KBD(VK_SPACE,CLICK,50)//ルックアップ選択画面が出たら一番上のレコードを選択する
+		ELSE
+			//ルックアップ選択画面が出なかったら何もしない
+		ENDIF
 
-	SLEEP(0.5)
+		SLEEP(0.5)
 
-	IFB CHKIMG("data\lookup_result_返却済.BMP")=TRUE
-		MSGBOX("マクロを回せていない端末が、既に検品完了・解約完了しています。プログラムを終了します。最初からやり直してください。")
-		SLEEP(1)
-		DOSCMD("taskkill /im UWSC.exe /f")
-		// exitexit
-	ELSE
-		
-	ENDIF
-
-	KBD(VK_TAB,CLICK,50)
-	KBD(VK_TAB,CLICK,15)
-	KBD(VK_TAB,CLICK,15)
-	KBD(VK_TAB,CLICK,15)
-	KBD(VK_TAB,CLICK,15)
-	KBD(VK_TAB,CLICK,15)
-	KBD(VK_TAB,CLICK,15)
-	KBD(VK_TAB,CLICK,15)
-	KBD(VK_TAB,CLICK,15)
-	KBD(VK_TAB,CLICK,15)
-	KBD(VK_TAB,CLICK,15)
-	KBD(VK_TAB,CLICK,15)
-	KBD(VK_TAB,CLICK,15)
-	KBD(VK_TAB,CLICK,15)
-	KBD(VK_TAB,CLICK,15)
-	KBD(VK_TAB,CLICK,15)
-	KBD(VK_TAB,CLICK,15)
-	KBD(VK_TAB,CLICK,15)
-
-	// IFB CHKIMG("data\device_status_顧客使用中.BMP")=TRUE
-	// 	KBD(VK_LEFT,CLICK,15)
-	// 	KBD(VK_LEFT,CLICK,15)
-	// 	KBD(VK_LEFT,CLICK,15)
-	// 	KBD(VK_LEFT,CLICK,15)
-	// 	KBD(VK_LEFT,CLICK,15)
-	// 	KBD(VK_LEFT,CLICK,15)
-	// 	KBD(VK_LEFT,CLICK,15)
-	// 	KBD(VK_LEFT,CLICK,15)
-	// 	KBD(VK_LEFT,CLICK,15)//もし検品時にステータスが「顧客使用中」にされていたら、その分左矢印キーを9回押下する
-	// ELSE
-	// 	//もし検品時にステータスが「顧客使用中」にされてなかったら、何もしない
-	// ENDIF
-	
-	IFB CHKIMG("data\device_status_不明.BMP")=TRUE
-		KBD(VK_LEFT,CLICK,15)
-		//もし検品時にステータスが「不明」にされていたら、その分左矢印キーを1回押下する
-	ELSE
-		//もし検品時にステータスが「不明」にされてなかったら、何もしない
-	ENDIF
-
-	IFB CHKIMG("data\device_status_在庫U2s100GB.BMP")=TRUE
-		KBD(VK_LEFT,CLICK,15)
-		KBD(VK_LEFT,CLICK,15)
-		//もし検品時にステータスが「在庫U2s100GB」にされていたら、その分左矢印キーを2回押下する
-	ELSE
-		//もし検品時にステータスが「在庫U2s100GB」にされてなかったら、何もしない
-	ENDIF
-
-	// IFB CHKIMG("data\device_status_在庫U2s制限なし.BMP")=TRUE
-	// 	KBD(VK_LEFT,CLICK,15)
-	// 	KBD(VK_LEFT,CLICK,15)
-	// 	KBD(VK_LEFT,CLICK,15)
-	// 	KBD(VK_LEFT,CLICK,15)//もし検品時にステータスが「在庫U2s制限なし」にされていたら、その分左矢印キーを5回押下する
-	// ELSE
-	// 	//もし検品時にステータスが「在庫U2s制限なし」にされてなかったら、何もしない
-	// ENDIF
-
-	IFB CHKIMG("data\device_status_在庫U3.BMP")=TRUE
-		KBD(VK_LEFT,CLICK,15)
-		KBD(VK_LEFT,CLICK,15)
-		KBD(VK_LEFT,CLICK,15)//もし検品時にステータスが「在庫U3」にされていたら、その分左矢印キーを3回押下する
-	ELSE
-		//もし検品時にステータスが「在庫U3」にされてなかったら、何もしない
-	ENDIF
-
-	IFB CHKIMG("data\device_status_在庫G4.BMP")=TRUE
-		KBD(VK_LEFT,CLICK,15)
-		KBD(VK_LEFT,CLICK,15)
-		KBD(VK_LEFT,CLICK,15)
-		KBD(VK_LEFT,CLICK,15)
-		//もし検品時にステータスが「在庫G4」にされていたら、その分左矢印キーを4回押下する
-	ELSE
-		//もし検品時にステータスが「在庫G4」にされてなかったら、何もしない
-	ENDIF
-
-	IFB CHKIMG("data\device_status_レンタル.BMP")=TRUE
-		KBD(VK_LEFT,CLICK,15)
-		KBD(VK_LEFT,CLICK,15)
-		KBD(VK_LEFT,CLICK,15)
-		KBD(VK_LEFT,CLICK,15)
-		KBD(VK_LEFT,CLICK,15)//もし検品時にステータスが「レンタル」にされていたら、その分左矢印キーを5回押下する
-	ELSE
-		//もし検品時にステータスが「レンタル」にされてなかったら、何もしない
-	ENDIF
-
-	IFB CHKIMG("data\device_status_社内用在庫.BMP")=TRUE
-		KBD(VK_LEFT,CLICK,15)
-		KBD(VK_LEFT,CLICK,15)
-		KBD(VK_LEFT,CLICK,15)
-		KBD(VK_LEFT,CLICK,15)
-		KBD(VK_LEFT,CLICK,15)
-		KBD(VK_LEFT,CLICK,15)//もし検品時にステータスが「社内用在庫」にされていたら、その分左矢印キーを6回押下する
-	ELSE
-		//もし検品時にステータスが「社内用在庫」にされてなかったら、何もしない
-	ENDIF
-
-	IFB CHKIMG("data\device_status_故障.BMP")=TRUE
-		KBD(VK_LEFT,CLICK,15)
-		KBD(VK_LEFT,CLICK,15)
-		KBD(VK_LEFT,CLICK,15)
-		KBD(VK_LEFT,CLICK,15)
-		KBD(VK_LEFT,CLICK,15)
-		KBD(VK_LEFT,CLICK,15)
-		KBD(VK_LEFT,CLICK,15)//もし検品時にステータスが「故障」にされていたら、その分左矢印キーを7回押下する
-	ELSE
-		//もし検品時にステータスが「故障」にされてなかったら、何もしない
-	ENDIF
-
-	IFB CHKIMG("data\device_status_AIR-U修理中.BMP")=TRUE
-		KBD(VK_LEFT,CLICK,15)
-		KBD(VK_LEFT,CLICK,15)
-		KBD(VK_LEFT,CLICK,15)
-		KBD(VK_LEFT,CLICK,15)
-		KBD(VK_LEFT,CLICK,15)
-		KBD(VK_LEFT,CLICK,15)
-		KBD(VK_LEFT,CLICK,15)
-		KBD(VK_LEFT,CLICK,15)//もし検品時にステータスが「AIR-U修理中」にされていたら、その分左矢印キーを8回押下する
-	ELSE
-		//もし検品時にステータスが「AIR-U修理中」にされてなかったら、何もしない
-	ENDIF
-
-	IFB CHKIMG("data\device_status_その他（速度出ない等）.BMP")=TRUE
-		KBD(VK_LEFT,CLICK,15)
-		KBD(VK_LEFT,CLICK,15)
-		KBD(VK_LEFT,CLICK,15)
-		KBD(VK_LEFT,CLICK,15)
-		KBD(VK_LEFT,CLICK,15)
-		KBD(VK_LEFT,CLICK,15)
-		KBD(VK_LEFT,CLICK,15)
-		KBD(VK_LEFT,CLICK,15)
-		KBD(VK_LEFT,CLICK,15)//もし検品時にステータスが「その他(速度出ない等)」にされていたら、その分左矢印キーを9回押下する
-	ELSE
-		//もし検品時にステータスが「その他(速度出ない等)」にされてなかったら、何もしない
-	ENDIF
-
-	IFB CHKIMG("data\device_status_端末消失.BMP")=TRUE
-		KBD(VK_LEFT,CLICK,15)
-		KBD(VK_LEFT,CLICK,15)
-		KBD(VK_LEFT,CLICK,15)
-		KBD(VK_LEFT,CLICK,15)
-		KBD(VK_LEFT,CLICK,15)
-		KBD(VK_LEFT,CLICK,15)
-		KBD(VK_LEFT,CLICK,15)
-		KBD(VK_LEFT,CLICK,15)
-		KBD(VK_LEFT,CLICK,15)
-		KBD(VK_LEFT,CLICK,15)//もし検品時にステータスが「端末消失」にされていたら、その分左矢印キーを10回押下する
-	ELSE
-		//もし検品時にステータスが「端末消失」にされてなかったら、何もしない
-	ENDIF
-
-	IFB CHKIMG("data\device_status_確認中.BMP")=TRUE
-		KBD(VK_RIGHT,CLICK,15)//もし検品時にステータスが「確認中」にされていたら、その分右矢印キーを1回押下する
-	ELSE
-		//もし検品時にステータスが「確認中」にされてなかったら、何もしない
-	ENDIF
-
-
-
-		// IFB CHKIMG("data\device_status_顧客使用中.BMP")=FALSE
-		// 	IFB CHKIMG("data\device_status_AiR_貸出用.BMP")=FALSE
-		// 		KBD(VK_LEFT,CLICK,15)
-		// 		KBD(VK_LEFT,CLICK,15)
-		// 		KBD(VK_LEFT,CLICK,15)
-		// 		KBD(VK_LEFT,CLICK,15)//最初からステータスが「顧客使用中」OR「AiR-WiFi貸出用」のどちらでもない場合のみ、左矢印キーを4回押下する
-		// 	ELSE
-		// 		//最初からステータスが「AiR-WiFi貸出用」にされていたら、何もしない
-		// 	ENDIF
+		// IFB CHKIMG("data\lookup_result_返却済.BMP")=TRUE
+		// 	MSGBOX("マクロを回せていない端末が、既に検品完了・解約完了しています。プログラムを終了します。最初からやり直してください。")
+		// 	SLEEP(1)
+		// 	DOSCMD("taskkill /im UWSC.exe /f")
+		// 	// exitexit
 		// ELSE
-		// 	//最初からステータスが「顧客使用中」にされていたら、何もしない
+			
 		// ENDIF
 
+		KBD(VK_TAB,CLICK,50)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+
+		IFB CHKIMG("data\lookup_result_返却済.BMP")=TRUE OR  CHKIMG("data\lookup_result_解約済返却済.BMP")=TRUE OR CHKIMG("data\lookup_result_解約済.BMP")=TRUE OR CHKIMG("data\lookup_result_返送確認-解約.BMP")=TRUE
+			//ぽにゃぽにゃ(マクロを回す前に解約・検品完了していた場合)開始
+			IFB CHKIMG("data\device_status_顧客使用中.BMP")=TRUE
+				KBD(VK_RIGHT,CLICK,15)
+				KBD(VK_RIGHT,CLICK,15)
+				KBD(VK_RIGHT,CLICK,15)
+				KBD(VK_RIGHT,CLICK,15)
+			ELSE
+				//顧客使用中でない≒在庫U3とかその他速度出ないの場合は何もしない
+			ENDIF
+			//ぽにゃぽにゃ終了
+
+				IFB CHKIMG("data\device_status_その他-速度出ない等.BMP")=TRUE AND CHKIMG("data\lookup_result_返却済.BMP")=FALSE AND CHKIMG("data\lookup_result_解約済返却済.BMP")=FALSE AND CHKIMG("data\lookup_result_解約済.BMP")=FALSE AND CHKIMG("data\lookup_result_返送確認-解約.BMP")=FALSE AND CHKIMG("data\lookup_result_返送確認-故障交換.BMP")=FALSE
+					KBD(VK_LEFT,CLICK,15)
+					KBD(VK_LEFT,CLICK,15)
+					KBD(VK_LEFT,CLICK,15)
+					KBD(VK_LEFT,CLICK,15)
+					KBD(VK_LEFT,CLICK,15)
+					KBD(VK_LEFT,CLICK,15)//もし検品時にステータスが「その他(速度出ない等)」にされていたら、その分左矢印キーを6回押下する
+				ELSE
+					//もし検品時にステータスが「その他(速度出ない等)」にされてなかったら、何もしない
+				ENDIF
+		ELSE
+
+			// IFB CHKIMG("data\device_status_顧客使用中.BMP")=TRUE
+			// 	KBD(VK_LEFT,CLICK,15)
+			// 	KBD(VK_LEFT,CLICK,15)
+			// 	KBD(VK_LEFT,CLICK,15)
+			// 	KBD(VK_LEFT,CLICK,15)
+			// 	KBD(VK_LEFT,CLICK,15)
+			// 	KBD(VK_LEFT,CLICK,15)
+			// 	KBD(VK_LEFT,CLICK,15)
+			// 	KBD(VK_LEFT,CLICK,15)
+			// 	KBD(VK_LEFT,CLICK,15)//もし検品時にステータスが「顧客使用中」にされていたら、その分左矢印キーを9回押下する
+			// ELSE
+			// 	//もし検品時にステータスが「顧客使用中」にされてなかったら、何もしない
+			// ENDIF
+			
+			IFB CHKIMG("data\device_status_不明.BMP")=TRUE
+				KBD(VK_LEFT,CLICK,15)
+				//もし検品時にステータスが「不明」にされていたら、その分左矢印キーを1回押下する
+			ELSE
+				//もし検品時にステータスが「不明」にされてなかったら、何もしない
+			ENDIF
+
+			IFB CHKIMG("data\device_status_在庫U2s100GB.BMP")=TRUE
+				KBD(VK_LEFT,CLICK,15)
+				KBD(VK_LEFT,CLICK,15)
+				//もし検品時にステータスが「在庫U2s100GB」にされていたら、その分左矢印キーを2回押下する
+			ELSE
+				//もし検品時にステータスが「在庫U2s100GB」にされてなかったら、何もしない
+			ENDIF
+
+			// IFB CHKIMG("data\device_status_在庫U2s制限なし.BMP")=TRUE
+			// 	KBD(VK_LEFT,CLICK,15)
+			// 	KBD(VK_LEFT,CLICK,15)
+			// 	KBD(VK_LEFT,CLICK,15)
+			// 	KBD(VK_LEFT,CLICK,15)//もし検品時にステータスが「在庫U2s制限なし」にされていたら、その分左矢印キーを5回押下する
+			// ELSE
+			// 	//もし検品時にステータスが「在庫U2s制限なし」にされてなかったら、何もしない
+			// ENDIF
+
+			IFB CHKIMG("data\device_status_在庫U3.BMP")=TRUE
+				KBD(VK_LEFT,CLICK,15)
+				KBD(VK_LEFT,CLICK,15)
+				KBD(VK_LEFT,CLICK,15)//もし検品時にステータスが「在庫U3」にされていたら、その分左矢印キーを3回押下する
+			ELSE
+				//もし検品時にステータスが「在庫U3」にされてなかったら、何もしない
+			ENDIF
+
+			IFB CHKIMG("data\device_status_在庫G4.BMP")=TRUE
+				KBD(VK_LEFT,CLICK,15)
+				KBD(VK_LEFT,CLICK,15)
+				KBD(VK_LEFT,CLICK,15)
+				KBD(VK_LEFT,CLICK,15)
+				//もし検品時にステータスが「在庫G4」にされていたら、その分左矢印キーを4回押下する
+			ELSE
+				//もし検品時にステータスが「在庫G4」にされてなかったら、何もしない
+			ENDIF
+
+			IFB CHKIMG("data\device_status_レンタル.BMP")=TRUE
+				KBD(VK_LEFT,CLICK,15)
+				KBD(VK_LEFT,CLICK,15)
+				KBD(VK_LEFT,CLICK,15)
+				KBD(VK_LEFT,CLICK,15)
+				KBD(VK_LEFT,CLICK,15)//もし検品時にステータスが「レンタル」にされていたら、その分左矢印キーを5回押下する
+			ELSE
+				//もし検品時にステータスが「レンタル」にされてなかったら、何もしない
+			ENDIF
+
+			IFB CHKIMG("data\device_status_社内用在庫.BMP")=TRUE
+				KBD(VK_LEFT,CLICK,15)
+				KBD(VK_LEFT,CLICK,15)
+				KBD(VK_LEFT,CLICK,15)
+				KBD(VK_LEFT,CLICK,15)
+				KBD(VK_LEFT,CLICK,15)
+				KBD(VK_LEFT,CLICK,15)//もし検品時にステータスが「社内用在庫」にされていたら、その分左矢印キーを6回押下する
+			ELSE
+				//もし検品時にステータスが「社内用在庫」にされてなかったら、何もしない
+			ENDIF
+
+			IFB CHKIMG("data\device_status_故障.BMP")=TRUE
+				KBD(VK_LEFT,CLICK,15)
+				KBD(VK_LEFT,CLICK,15)
+				KBD(VK_LEFT,CLICK,15)
+				KBD(VK_LEFT,CLICK,15)
+				KBD(VK_LEFT,CLICK,15)
+				KBD(VK_LEFT,CLICK,15)
+				KBD(VK_LEFT,CLICK,15)//もし検品時にステータスが「故障」にされていたら、その分左矢印キーを7回押下する
+			ELSE
+				//もし検品時にステータスが「故障」にされてなかったら、何もしない
+			ENDIF
+
+			IFB CHKIMG("data\device_status_AIR-U修理中.BMP")=TRUE
+				KBD(VK_LEFT,CLICK,15)
+				KBD(VK_LEFT,CLICK,15)
+				KBD(VK_LEFT,CLICK,15)
+				KBD(VK_LEFT,CLICK,15)
+				KBD(VK_LEFT,CLICK,15)
+				KBD(VK_LEFT,CLICK,15)
+				KBD(VK_LEFT,CLICK,15)
+				KBD(VK_LEFT,CLICK,15)//もし検品時にステータスが「AIR-U修理中」にされていたら、その分左矢印キーを8回押下する
+			ELSE
+				//もし検品時にステータスが「AIR-U修理中」にされてなかったら、何もしない
+			ENDIF
+
+			IFB CHKIMG("data\device_status_その他（速度出ない等）.BMP")=TRUE
+				KBD(VK_LEFT,CLICK,15)
+				KBD(VK_LEFT,CLICK,15)
+				KBD(VK_LEFT,CLICK,15)
+				KBD(VK_LEFT,CLICK,15)
+				KBD(VK_LEFT,CLICK,15)
+				KBD(VK_LEFT,CLICK,15)
+				KBD(VK_LEFT,CLICK,15)
+				KBD(VK_LEFT,CLICK,15)
+				KBD(VK_LEFT,CLICK,15)//もし検品時にステータスが「その他(速度出ない等)」にされていたら、その分左矢印キーを9回押下する
+			ELSE
+				//もし検品時にステータスが「その他(速度出ない等)」にされてなかったら、何もしない
+			ENDIF
+
+			IFB CHKIMG("data\device_status_端末消失.BMP")=TRUE
+				KBD(VK_LEFT,CLICK,15)
+				KBD(VK_LEFT,CLICK,15)
+				KBD(VK_LEFT,CLICK,15)
+				KBD(VK_LEFT,CLICK,15)
+				KBD(VK_LEFT,CLICK,15)
+				KBD(VK_LEFT,CLICK,15)
+				KBD(VK_LEFT,CLICK,15)
+				KBD(VK_LEFT,CLICK,15)
+				KBD(VK_LEFT,CLICK,15)
+				KBD(VK_LEFT,CLICK,15)//もし検品時にステータスが「端末消失」にされていたら、その分左矢印キーを10回押下する
+			ELSE
+				//もし検品時にステータスが「端末消失」にされてなかったら、何もしない
+			ENDIF
+
+			IFB CHKIMG("data\device_status_確認中.BMP")=TRUE
+				KBD(VK_RIGHT,CLICK,15)//もし検品時にステータスが「確認中」にされていたら、その分右矢印キーを1回押下する
+			ELSE
+				//もし検品時にステータスが「確認中」にされてなかったら、何もしない
+			ENDIF
+
+
+
+				// IFB CHKIMG("data\device_status_顧客使用中.BMP")=FALSE
+				// 	IFB CHKIMG("data\device_status_AiR_貸出用.BMP")=FALSE
+				// 		KBD(VK_LEFT,CLICK,15)
+				// 		KBD(VK_LEFT,CLICK,15)
+				// 		KBD(VK_LEFT,CLICK,15)
+				// 		KBD(VK_LEFT,CLICK,15)//最初からステータスが「顧客使用中」OR「AiR-WiFi貸出用」のどちらでもない場合のみ、左矢印キーを4回押下する
+				// 	ELSE
+				// 		//最初からステータスが「AiR-WiFi貸出用」にされていたら、何もしない
+				// 	ENDIF
+				// ELSE
+				// 	//最初からステータスが「顧客使用中」にされていたら、何もしない
+				// ENDIF
+
+		ENDIF
+
+		KBD(VK_CTRL,DOWN,50)
+		KBD(VK_S,CLICK,50)
+		KBD(VK_CTRL,UP,50)//顧客データを保存する
+
+		// 保存完了まで待機
+		WHILE (CHKIMG("data\status_save-complete.BMP")=FALSE)
+		SLEEP(0.01)
+		WEND
 	ENDIF
-
-	KBD(VK_CTRL,DOWN,50)
-	KBD(VK_S,CLICK,50)
-	KBD(VK_CTRL,UP,50)//顧客データを保存する
-
-	// 保存完了まで待機
-	WHILE (CHKIMG("data\status_save-complete.BMP")=FALSE)
-	SLEEP(0.01)
-	WEND
 
 ELSE
 	KBD(VK_TAB,CLICK,15)
