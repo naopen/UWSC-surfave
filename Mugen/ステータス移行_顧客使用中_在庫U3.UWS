@@ -67,6 +67,7 @@ SLEEP(0.01)
 IF CHKIMG("data\status_no-results.BMP")=TRUE THEN BREAK
 WEND
 
+SLEEP(0.1)
 
 IFB CHKIMG("data\status_no-results.BMP", -1)=FALSE
 	KBD(VK_TAB,CLICK,15)
@@ -267,9 +268,9 @@ IFB CHKIMG("data\status_no-results.BMP", -1)=FALSE
 			KBD(VK_TAB,CLICK,15)
 			KBD(VK_TAB,CLICK,15)
 			KBD(VK_TAB,CLICK,15)
-			KBD(VK_SPACE,CLICK,50)//lookup_selectionが出たら一番上のレコードを選択する
+			KBD(VK_SPACE,CLICK,50)//ルックアップ選択画面が出たら一番上のレコードを選択する
 		ELSE
-			//lookup_selectionが出なかったら何もしない
+			//ルックアップ選択画面が出なかったら何もしない
 		ENDIF
 		//ここまでルックアップを取得する
 
@@ -278,8 +279,7 @@ IFB CHKIMG("data\status_no-results.BMP", -1)=FALSE
 
 		IFB CHKIMG("data\lookup_nodata_故障交換.BMP")=TRUE THEN
 			MSGBOX("複数台契約の可能性があります。プログラムを終了します。最初からやり直してください。")
-			SLEEP(1)
-			DOSCMD("taskkill /im UWSC.exe /f")
+
 		ENDIF
 
 
@@ -292,9 +292,9 @@ IFB CHKIMG("data\status_no-results.BMP", -1)=FALSE
 			KBD(VK_TAB,CLICK,15)
 			KBD(VK_TAB,CLICK,15)
 			KBD(VK_TAB,CLICK,15)
-			KBD(VK_SPACE,CLICK,50)//lookup_selectionが出たら一番上のレコードを選択する
+			KBD(VK_SPACE,CLICK,50)//ルックアップ選択画面が出たら一番上のレコードを選択する
 		ELSE
-			//lookup_selectionが出なかったら何もしない
+			//ルックアップ選択画面が出なかったら何もしない
 		ENDIF
 
 		KBD(VK_TAB,CLICK,50)
@@ -369,7 +369,7 @@ IFB CHKIMG("data\status_no-results.BMP", -1)=FALSE
 	KBD(VK_S,CLICK,50)
 	KBD(VK_CTRL,UP,50)//顧客データを保存する
 
-
+	// 保存完了まで待機
 	WHILE (CHKIMG("data\status_save-complete.BMP")=FALSE)
 	SLEEP(0.01)
 	WEND
