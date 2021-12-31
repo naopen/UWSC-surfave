@@ -46,7 +46,7 @@ KBD(VK_RETURN,CLICK,30)
 //Enterキーを押下
 
 //ここまででIMEI検索
-SLEEP(1)
+SLEEP(1.1)
 
 IFB CHKIMG("マクロ必要データ\検索結果無し2.BMP", -1)=FALSE
 	KBD(VK_TAB,CLICK,15)
