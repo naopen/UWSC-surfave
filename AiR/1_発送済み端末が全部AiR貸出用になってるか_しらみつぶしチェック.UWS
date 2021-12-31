@@ -116,7 +116,9 @@ IFB CHKIMG("data\status_no-results.BMP", -1)=FALSE
 	KBD(VK_TAB,CLICK,15)
 	KBD(VK_TAB,CLICK,15)
 	KBD(VK_TAB,CLICK,15)
-	//Tabキーを20回押して、「ステータス状況」に移動する
+	KBD(VK_TAB,CLICK,15)
+	KBD(VK_TAB,CLICK,15)
+	//Tabキーを22回押して、「ステータス状況」に移動する
 
 	IFB CHKIMG("data\device_status_顧客使用中.BMP")=TRUE
 		KBD(VK_LEFT,CLICK,15)//もし検品時にステータスが「顧客使用中」にされていたら、その分左矢印キーを1回押下する
