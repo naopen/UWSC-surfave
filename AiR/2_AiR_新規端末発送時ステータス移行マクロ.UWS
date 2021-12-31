@@ -368,7 +368,7 @@ IFB CHKIMG("data\status_no-results.BMP")=FALSE
 				//もし検品時にステータスが「AIR-U修理中」にされてなかったら、何もしない
 			ENDIF
 
-			IFB CHKIMG("data\device_status_その他（速度出ない等）.BMP")=TRUE
+			IFB CHKIMG("data\device_status_その他-速度出ない等.BMP")=TRUE
 				KBD(VK_LEFT,CLICK,15)
 				KBD(VK_LEFT,CLICK,15)
 				KBD(VK_LEFT,CLICK,15)
