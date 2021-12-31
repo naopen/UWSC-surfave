@@ -51,7 +51,7 @@ KBD(VK_OEM_2,CLICK,15)
 // //スラッシュの代わりにTABキーで検索
 
 
-KBD(VK_CTRL,DOWN,300)
+KBD(VK_CTRL,DOWN,15)
 KBD(VK_V,CLICK,30)
 KBD(VK_CTRL,UP,30)
 //「Ctrl」＋「V」を押下
@@ -70,7 +70,7 @@ SLEEP(0.01)
 IF CHKIMG("data\status_no-results.BMP")=TRUE THEN BREAK
 WEND
 
-IFB CHKIMG("data\status_no-results.BMP", -1)=FALSE
+IFB CHKIMG("data\status_no-results.BMP")=FALSE
 	KBD(VK_TAB,CLICK,15)
 	KBD(VK_TAB,CLICK,15)
 	KBD(VK_TAB,CLICK,15)

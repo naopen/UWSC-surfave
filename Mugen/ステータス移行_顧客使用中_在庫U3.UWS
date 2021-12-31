@@ -69,7 +69,7 @@ WEND
 
 SLEEP(0.1)
 
-IFB CHKIMG("data\status_no-results.BMP", -1)=FALSE
+IFB CHKIMG("data\status_no-results.BMP")=FALSE
 	KBD(VK_TAB,CLICK,15)
 	KBD(VK_TAB,CLICK,15)
 	KBD(VK_TAB,CLICK,15)
@@ -149,7 +149,7 @@ IFB CHKIMG("data\status_no-results.BMP", -1)=FALSE
 	WEND
 	SLEEP(0.1)
 
-	IFB CHKIMG("data\lookup_nodata.BMP", -1)=TRUE
+	IFB CHKIMG("data\lookup_nodata.BMP")=TRUE
 		// KBD(VK_SHIFT,DOWN,50)
 		// KBD(VK_TAB,DOWN,50)
 		// KBD(VK_SHIFT,UP,50)
