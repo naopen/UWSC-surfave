@@ -1,6 +1,12 @@
 ACW(GETID("【AiR-WiFi】お客様管理シート - Google スプレッドシート - Google Chrome","Chrome_WidgetWin_1"),0,0,0,0,0)
 //Chromeのウィンドウをアクティブにする(選択する)
 
+// // finallyを必ず実行してもらう
+// OPTION OPTFINALLY
+
+// ChkImgX関数をインクルード
+CALL ChkImgX.uws
+
 KBD(VK_CTRL,DOWN,150)
 KBD(VK_1,CLICK,30)
 KBD(VK_CTRL,UP,30)
@@ -120,21 +126,26 @@ IFB CHKIMG("data\status_no-results.BMP", -1)=FALSE
 	KBD(VK_TAB,CLICK,15)
 	//Tabキーを22回押して、「ステータス状況」に移動する
 
-	IFB CHKIMG("data\device_status_顧客使用中.BMP")=TRUE
+	STARTUP_CHKIMGX()
+	IFB CHKIMGX("data\device_status_顧客使用中.BMP",0,0,0,0,0,0,0.8)=TRUE
 		KBD(VK_LEFT,CLICK,15)//もし検品時にステータスが「顧客使用中」にされていたら、その分左矢印キーを1回押下する
 	ELSE
 		//もし検品時にステータスが「顧客使用中」にされてなかったら、何もしない
 	ENDIF
+	SHUTDOWN_CHKIMGX()
 	
-	IFB CHKIMG("data\device_status_不明.BMP")=TRUE
+	STARTUP_CHKIMGX()
+	IFB CHKIMGX("data\device_status_不明.BMP",0,0,0,0,0,0,0.8)=TRUE
 		KBD(VK_LEFT,CLICK,15)
 		KBD(VK_LEFT,CLICK,15)
 		//もし検品時にステータスが「不明」にされていたら、その分左矢印キーを2回押下する
 	ELSE
 		//もし検品時にステータスが「不明」にされてなかったら、何もしない
 	ENDIF
+	SHUTDOWN_CHKIMGX()
 
-	IFB CHKIMG("data\device_status_在庫U2s100GB.BMP")=TRUE
+	STARTUP_CHKIMGX()
+	IFB CHKIMGX("data\device_status_在庫U2s100GB.BMP",0,0,0,0,0,0,0.8)=TRUE
 		KBD(VK_LEFT,CLICK,15)
 		KBD(VK_LEFT,CLICK,15)
 		KBD(VK_LEFT,CLICK,15)
@@ -142,8 +153,10 @@ IFB CHKIMG("data\status_no-results.BMP", -1)=FALSE
 	ELSE
 		//もし検品時にステータスが「在庫U2s100GB」にされてなかったら、何もしない
 	ENDIF
+	SHUTDOWN_CHKIMGX()
 
-	IFB CHKIMG("data\device_status_在庫U2s制限なし.BMP")=TRUE
+	STARTUP_CHKIMGX()
+	IFB CHKIMGX("data\device_status_在庫U2s制限なし.BMP",0,0,0,0,0,0,0.8)=TRUE
 		KBD(VK_LEFT,CLICK,15)
 		KBD(VK_LEFT,CLICK,15)
 		KBD(VK_LEFT,CLICK,15)
@@ -151,8 +164,10 @@ IFB CHKIMG("data\status_no-results.BMP", -1)=FALSE
 	ELSE
 		//もし検品時にステータスが「在庫U2s制限なし」にされてなかったら、何もしない
 	ENDIF
+	SHUTDOWN_CHKIMGX()
 
-	IFB CHKIMG("data\device_status_在庫U3.BMP")=TRUE
+	STARTUP_CHKIMGX()
+	IFB CHKIMGX("data\device_status_在庫U3.BMP",0,0,0,0,0,0,0.8)=TRUE
 		KBD(VK_LEFT,CLICK,15)
 		KBD(VK_LEFT,CLICK,15)
 		KBD(VK_LEFT,CLICK,15)
@@ -161,8 +176,10 @@ IFB CHKIMG("data\status_no-results.BMP", -1)=FALSE
 	ELSE
 		//もし検品時にステータスが「在庫U3」にされてなかったら、何もしない
 	ENDIF
+	SHUTDOWN_CHKIMGX()
 
-	IFB CHKIMG("data\device_status_在庫G4.BMP")=TRUE
+	STARTUP_CHKIMGX()
+	IFB CHKIMGX("data\device_status_在庫G4.BMP",0,0,0,0,0,0,0.8)=TRUE
 		KBD(VK_LEFT,CLICK,15)
 		KBD(VK_LEFT,CLICK,15)
 		KBD(VK_LEFT,CLICK,15)
@@ -172,8 +189,10 @@ IFB CHKIMG("data\status_no-results.BMP", -1)=FALSE
 	ELSE
 		//もし検品時にステータスが「在庫G4」にされてなかったら、何もしない
 	ENDIF
+	SHUTDOWN_CHKIMGX()
 
-	IFB CHKIMG("data\device_status_レンタル.BMP")=TRUE
+	STARTUP_CHKIMGX()
+	IFB CHKIMGX("data\device_status_レンタル.BMP",0,0,0,0,0,0,0.8)=TRUE
 		KBD(VK_LEFT,CLICK,15)
 		KBD(VK_LEFT,CLICK,15)
 		KBD(VK_LEFT,CLICK,15)
@@ -184,8 +203,10 @@ IFB CHKIMG("data\status_no-results.BMP", -1)=FALSE
 	ELSE
 		//もし検品時にステータスが「レンタル」にされてなかったら、何もしない
 	ENDIF
+	SHUTDOWN_CHKIMGX()
 
-	IFB CHKIMG("data\device_status_社内用在庫.BMP")=TRUE
+	STARTUP_CHKIMGX()
+	IFB CHKIMGX("data\device_status_社内用在庫.BMP",0,0,0,0,0,0,0.8)=TRUE
 		KBD(VK_LEFT,CLICK,15)
 		KBD(VK_LEFT,CLICK,15)
 		KBD(VK_LEFT,CLICK,15)
@@ -197,8 +218,10 @@ IFB CHKIMG("data\status_no-results.BMP", -1)=FALSE
 	ELSE
 		//もし検品時にステータスが「社内用在庫」にされてなかったら、何もしない
 	ENDIF
+	SHUTDOWN_CHKIMGX()
 
-	IFB CHKIMG("data\device_status_故障.BMP")=TRUE
+	STARTUP_CHKIMGX()
+	IFB CHKIMGX("data\device_status_故障.BMP",0,0,0,0,0,0,0.8)=TRUE
 		KBD(VK_LEFT,CLICK,15)
 		KBD(VK_LEFT,CLICK,15)
 		KBD(VK_LEFT,CLICK,15)
@@ -211,8 +234,10 @@ IFB CHKIMG("data\status_no-results.BMP", -1)=FALSE
 	ELSE
 		//もし検品時にステータスが「故障」にされてなかったら、何もしない
 	ENDIF
+	SHUTDOWN_CHKIMGX()
 
-	IFB CHKIMG("data\device_status_AIR-U修理中.BMP")=TRUE
+	STARTUP_CHKIMGX()
+	IFB CHKIMGX("data\device_status_AIR-U修理中.BMP",0,0,0,0,0,0,0.8)=TRUE
 		KBD(VK_LEFT,CLICK,15)
 		KBD(VK_LEFT,CLICK,15)
 		KBD(VK_LEFT,CLICK,15)
@@ -226,8 +251,10 @@ IFB CHKIMG("data\status_no-results.BMP", -1)=FALSE
 	ELSE
 		//もし検品時にステータスが「AIR-U修理中」にされてなかったら、何もしない
 	ENDIF
+	SHUTDOWN_CHKIMGX()
 
-	IFB CHKIMG("data\device_status_その他（速度出ない等）.BMP")=TRUE
+	STARTUP_CHKIMGX()
+	IFB CHKIMGX("data\device_status_その他-速度出ない等.BMP",0,0,0,0,0,0,0.8)=TRUE
 		KBD(VK_LEFT,CLICK,15)
 		KBD(VK_LEFT,CLICK,15)
 		KBD(VK_LEFT,CLICK,15)
@@ -242,8 +269,10 @@ IFB CHKIMG("data\status_no-results.BMP", -1)=FALSE
 	ELSE
 		//もし検品時にステータスが「その他(速度出ない等)」にされてなかったら、何もしない
 	ENDIF
+	SHUTDOWN_CHKIMGX()
 
-	IFB CHKIMG("data\device_status_端末消失.BMP")=TRUE
+	STARTUP_CHKIMGX()
+	IFB CHKIMGX("data\device_status_端末消失.BMP",0,0,0,0,0,0,0.8)=TRUE
 		KBD(VK_LEFT,CLICK,15)
 		KBD(VK_LEFT,CLICK,15)
 		KBD(VK_LEFT,CLICK,15)
@@ -259,12 +288,15 @@ IFB CHKIMG("data\status_no-results.BMP", -1)=FALSE
 	ELSE
 		//もし検品時にステータスが「端末消失」にされてなかったら、何もしない
 	ENDIF
+	SHUTDOWN_CHKIMGX()
 
-	IFB CHKIMG("data\device_status_確認中.BMP")=TRUE
+	STARTUP_CHKIMGX()
+	IFB CHKIMGX("data\device_status_確認中.BMP",0,0,0,0,0,0,0.8)=TRUE
 		KBD(VK_RIGHT,CLICK,15)//もし検品時にステータスが「確認中」にされていたら、その分右矢印キーを1回押下する
 	ELSE
 		//もし検品時にステータスが「確認中」にされてなかったら、何もしない
 	ENDIF
+	SHUTDOWN_CHKIMGX()
 	
 
 	KBD(VK_CTRL,DOWN,50)
