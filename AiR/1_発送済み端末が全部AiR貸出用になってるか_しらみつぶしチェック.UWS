@@ -5,7 +5,6 @@ ACW(GETID("【AiR-WiFi】お客様管理シート - Google スプレッドシート - Google Chrom
 // OPTION OPTFINALLY
 
 // ChkImgX関数をインクルード
-あ
 CALL ChkImgX.uws
 
 KBD(VK_CTRL,DOWN,150)
