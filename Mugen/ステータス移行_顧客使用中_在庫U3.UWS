@@ -229,13 +229,15 @@ IFB CHKIMG("data\status_no-results.BMP")=FALSE
 		KBD(VK_TAB,CLICK,15)
 		KBD(VK_TAB,CLICK,15)
 
-		// KBD(VK_TAB,CLICK,15)
-		// KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
 
 		KBD(VK_CTRL,DOWN,15)
+		KBD(VK_A,DOWN,15)
 		KBD(VK_V,DOWN,15)
 		KBD(VK_CTRL,UP,15)
 		KBD(VK_V,UP,15)
+		KBD(VK_A,UP,15)
 
 		KBD(VK_TAB,CLICK,15)
 		KBD(VK_SPACE,CLICK,50)
@@ -272,7 +274,7 @@ IFB CHKIMG("data\status_no-results.BMP")=FALSE
 		ENDIF
 		//ここまでルックアップを取得する
 
-		SLEEP(0.1)
+		SLEEP(0.01)
 		//1秒待機する
 
 		IFB CHKIMG("data\lookup_nodata_故障交換.BMP")=TRUE THEN
