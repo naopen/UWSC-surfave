@@ -278,6 +278,10 @@ IFB CHKIMG("data\status_no-results.BMP")=FALSE
 
 		IFB CHKIMG("data\lookup_nodata_故障交換.BMP")=TRUE THEN
 			MSGBOX("複数台契約の可能性があります。プログラムを終了します。最初からやり直してください。")
+			SLEEP(1)
+			DOSCMD("taskkill /im UWSC.exe /f")
+		// exitexit
+		
 
 		ENDIF
 
