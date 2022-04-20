@@ -272,11 +272,16 @@ IFB CHKIMG("data\status_no-results.BMP")=FALSE
 		ENDIF
 		//ここまでルックアップを取得する
 
-		SLEEP(0.01)
-		//1秒待機する
+		SLEEP(1)
+		//ルックアップ先自動入力プラグイン動作待ち
+
 
 		IFB CHKIMG("data\lookup_nodata_故障交換.BMP")=TRUE THEN
 			MSGBOX("複数台契約の可能性があります。プログラムを終了します。最初からやり直してください。")
+			SLEEP(1)
+			DOSCMD("taskkill /im UWSC.exe /f")
+		// exitexit
+		
 
 		ENDIF
 
@@ -294,6 +299,10 @@ IFB CHKIMG("data\status_no-results.BMP")=FALSE
 		ELSE
 			//ルックアップ選択画面が出なかったら何もしない
 		ENDIF
+
+		SLEEP(3)
+		//ルックアップ先自動入力プラグイン動作待ち
+
 
 		KBD(VK_TAB,CLICK,50)
 		KBD(VK_TAB,CLICK,15)

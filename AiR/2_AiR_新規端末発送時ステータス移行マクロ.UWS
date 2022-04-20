@@ -200,6 +200,9 @@ IFB CHKIMG("data\status_no-results.BMP")=FALSE
 		// //2秒待機する
 
 		// //「データがありません。」の場合はさすがに「1回目交換履歴ルックアップ」に居るだろうと信じてループ終了
+
+
+		
 	
 	ELSE
 		//「データがありません。」が出なかった場合のみ他の動作を行う
@@ -212,7 +215,8 @@ IFB CHKIMG("data\status_no-results.BMP")=FALSE
 			//ルックアップ選択画面が出なかったら何もしない
 		ENDIF
 
-		SLEEP(0.5)
+		SLEEP(1)
+		//ルックアップ先自動入力プラグイン動作待ち
 
 		// IFB CHKIMG("data\lookup_result_返却済.BMP")=TRUE
 		// 	MSGBOX("マクロを回せていない端末が、既に検品完了・解約完了しています。プログラムを終了します。最初からやり直してください。")
