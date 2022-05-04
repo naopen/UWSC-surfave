@@ -1,3 +1,9 @@
+// 空行カウント用変数
+DIM count = 0
+
+// STOPウィンドウを非表示にする
+STOPFORM(False)
+
 ACW(GETID("[AiR] お客様管理シート - Google スプレッドシート - Google Chrome","Chrome_WidgetWin_1"),0,0,0,0,0)
 //Chromeのウィンドウをアクティブにする(選択する)
 
@@ -149,7 +155,7 @@ IFB CHKIMG("data\status_no-results.BMP")=FALSE
 
 
 	IFB CHKIMG("data\lookup_nodata.BMP")=TRUE
-		MSGBOX("顧客リストをルックアップした結果、当該IMEIがありませんでした。プログラムを終了します。最初からやり直してください。")
+		MSGBOX("顧客リストをルックアップした結果、当該IMEIがありませんでした。MUGEN→AiRの端末データの移動が行われていない可能性があります。プログラムを終了します。状況調査してから、再度実行し直してください。")
 		SLEEP(1)
 		DOSCMD("taskkill /im UWSC.exe /f")
 		// exitexit
@@ -458,8 +464,28 @@ ELSE
 
 ENDIF
 
+WHILE (CHKIMG("data\icon_spread-sheet.BMP")=FALSE)
 KBD(VK_CTRL,DOWN,50)
 KBD(VK_1,CLICK,50)
 KBD(VK_CTRL,UP,50)//格納庫に戻る
-KBD(VK_DOWN,CLICK,50)//下矢印キーを1回押す
+SLEEP(0.5)
+WEND
 
+KBD(VK_DOWN,CLICK,50)//下矢印キーを1回押す
+SLEEP(0.5)
+
+// 空行があると無視してひとつ下の行に行く
+WHILE (CHKIMG("data\sheetCell-status_nodata.BMP")=TRUE AND CHKIMG("data\icon_spread-sheet.BMP")=TRUE)
+	KBD(VK_DOWN,CLICK,50)//下矢印キーを1回押す
+	SLEEP(0.1)
+	count = count + 1
+
+	IFB count > 500
+		//空行が500行続くとエラーで終了する
+			MSGBOX("空行が500行連続したと判定されました。マクロが最後まで回り終わった可能性が高いので、確認してください。プログラムを終了します。お疲れ様でした。")
+			SLEEP(1)
+			DOSCMD("taskkill /im UWSC.exe /f")
+		// exitexit
+	ELSE
+	ENDIF
+WEND
