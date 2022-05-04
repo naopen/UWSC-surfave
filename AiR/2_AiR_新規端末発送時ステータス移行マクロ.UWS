@@ -1,4 +1,10 @@
-ACW(GETID("【AiR-WiFi】お客様管理シート - Google スプレッドシート - Google Chrome","Chrome_WidgetWin_1"),0,0,0,0,0)
+// 空行カウント用変数
+DIM count = 0
+
+// STOPウィンドウを非表示にする
+STOPFORM(False)
+
+ACW(GETID("[AiR] お客様管理シート - Google スプレッドシート - Google Chrome","Chrome_WidgetWin_1"),0,0,0,0,0)
 //Chromeのウィンドウをアクティブにする(選択する)
 
 KBD(VK_CTRL,DOWN,150)
@@ -149,7 +155,7 @@ IFB CHKIMG("data\status_no-results.BMP")=FALSE
 
 
 	IFB CHKIMG("data\lookup_nodata.BMP")=TRUE
-		MSGBOX("顧客リストをルックアップした結果、当該IMEIがありませんでした。プログラムを終了します。最初からやり直してください。")
+		MSGBOX("顧客リストをルックアップした結果、当該IMEIがありませんでした。MUGEN→AiRの端末データの移動が行われていない可能性があります。プログラムを終了します。状況調査してから、再度実行し直してください。")
 		SLEEP(1)
 		DOSCMD("taskkill /im UWSC.exe /f")
 		// exitexit
@@ -200,6 +206,9 @@ IFB CHKIMG("data\status_no-results.BMP")=FALSE
 		// //2秒待機する
 
 		// //「データがありません。」の場合はさすがに「1回目交換履歴ルックアップ」に居るだろうと信じてループ終了
+
+
+		
 	
 	ELSE
 		//「データがありません。」が出なかった場合のみ他の動作を行う
@@ -212,7 +221,8 @@ IFB CHKIMG("data\status_no-results.BMP")=FALSE
 			//ルックアップ選択画面が出なかったら何もしない
 		ENDIF
 
-		SLEEP(0.5)
+		SLEEP(1)
+		//ルックアップ先自動入力プラグイン動作待ち
 
 		// IFB CHKIMG("data\lookup_result_返却済.BMP")=TRUE
 		// 	MSGBOX("マクロを回せていない端末が、既に検品完了・解約完了しています。プログラムを終了します。最初からやり直してください。")
@@ -447,15 +457,35 @@ ELSE
 	KBD(VK_TAB,CLICK,15)
 	//検索結果無の場合はスラッシュの代わりにTABキーで検索欄に先に移動しておく
 
-	MSGBOX("検索結果がありませんでした。プログラムを終了します。最初からやり直してください。")
+	MSGBOX("検索結果がありませんでした。管理アプリに登録自体がないか、入力したIMEIが間違っています。プログラムを終了します。登録自体がない場合、MUGENの端末データをAiRに移行できていない可能性があります。操作をやり直してください。")
 	SLEEP(1)
 	DOSCMD("taskkill /im UWSC.exe /f")
 	// exitexit
 
 ENDIF
 
+WHILE (CHKIMG("data\icon_spread-sheet.BMP")=FALSE)
 KBD(VK_CTRL,DOWN,50)
 KBD(VK_1,CLICK,50)
 KBD(VK_CTRL,UP,50)//格納庫に戻る
-KBD(VK_DOWN,CLICK,50)//下矢印キーを1回押す
+SLEEP(0.5)
+WEND
 
+KBD(VK_DOWN,CLICK,50)//下矢印キーを1回押す
+SLEEP(0.5)
+
+// 空行があると無視してひとつ下の行に行く
+WHILE (CHKIMG("data\sheetCell-status_nodata.BMP")=TRUE AND CHKIMG("data\icon_spread-sheet.BMP")=TRUE)
+	KBD(VK_DOWN,CLICK,50)//下矢印キーを1回押す
+	SLEEP(0.1)
+	count = count + 1
+
+	IFB count > 500
+		//空行が500行続くとエラーで終了する
+			MSGBOX("空行が500行連続したと判定されました。マクロが最後まで回り終わった可能性が高いので、確認してください。プログラムを終了します。お疲れ様でした。")
+			SLEEP(1)
+			DOSCMD("taskkill /im UWSC.exe /f")
+		// exitexit
+	ELSE
+	ENDIF
+WEND

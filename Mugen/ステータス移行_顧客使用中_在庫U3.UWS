@@ -1,3 +1,9 @@
+// 空行カウント用変数
+DIM count = 0
+
+// STOPウィンドウを非表示にする
+STOPFORM(False)
+
 ACW(GETID("管理画面(格納庫)顧客一覧 - Google スプレッドシート - Google Chrome","Chrome_WidgetWin_1"),0,0,0,0,0)
 //Chromeのウィンドウをアクティブにする(選択する)
 
@@ -272,11 +278,16 @@ IFB CHKIMG("data\status_no-results.BMP")=FALSE
 		ENDIF
 		//ここまでルックアップを取得する
 
-		SLEEP(0.01)
-		//1秒待機する
+		SLEEP(1)
+		//ルックアップ先自動入力プラグイン動作待ち
+
 
 		IFB CHKIMG("data\lookup_nodata_故障交換.BMP")=TRUE THEN
-			MSGBOX("複数台契約の可能性があります。プログラムを終了します。最初からやり直してください。")
+			MSGBOX("ルックアップが掛けられませんでした。複数台契約か、端末未入庫の可能性があります。複数台契約の場合、当該端末に関しては、手動で「顧客使用中」に変更してください。その他処理も合わせて適切に行ってください。端末未入庫の場合は、入庫処理を行ってからマクロを回してください。プログラムを終了します。ひとつ下の行から再開してください。")
+			SLEEP(1)
+			DOSCMD("taskkill /im UWSC.exe /f")
+		// exitexit
+		
 
 		ENDIF
 
@@ -294,6 +305,10 @@ IFB CHKIMG("data\status_no-results.BMP")=FALSE
 		ELSE
 			//ルックアップ選択画面が出なかったら何もしない
 		ENDIF
+
+		SLEEP(3)
+		//ルックアップ先自動入力プラグイン動作待ち
+
 
 		KBD(VK_TAB,CLICK,50)
 		KBD(VK_TAB,CLICK,15)
@@ -390,7 +405,29 @@ ELSE
 	//検索結果無の場合はスラッシュの代わりにTABキーで検索
 ENDIF
 
+
+WHILE (CHKIMG("data\icon_spread-sheet.BMP")=FALSE)
 KBD(VK_CTRL,DOWN,50)
 KBD(VK_1,CLICK,50)
 KBD(VK_CTRL,UP,50)//格納庫に戻る
+SLEEP(0.5)
+WEND
+
 KBD(VK_DOWN,CLICK,50)//下矢印キーを1回押す
+SLEEP(0.5)
+
+// 空行があると無視してひとつ下の行に行く
+WHILE (CHKIMG("data\sheetCell-status_nodata.BMP")=TRUE AND CHKIMG("data\icon_spread-sheet.BMP")=TRUE)
+	KBD(VK_DOWN,CLICK,50)//下矢印キーを1回押す
+	SLEEP(0.1)
+	count = count + 1
+
+	IFB count > 500
+		//空行が500行続くとエラーで終了する
+			MSGBOX("空行が500行連続したと判定されました。マクロが最後まで回り終わった可能性が高いので、確認してください。プログラムを終了します。お疲れ様でした。")
+			SLEEP(1)
+			DOSCMD("taskkill /im UWSC.exe /f")
+		// exitexit
+	ELSE
+	ENDIF
+WEND
