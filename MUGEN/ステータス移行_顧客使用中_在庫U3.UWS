@@ -1,0 +1,433 @@
+// 空行カウント用変数
+DIM count = 0
+
+// STOPウィンドウを非表示にする
+STOPFORM(False)
+
+ACW(GETID("管理画面(格納庫)顧客一覧 - Google スプレッドシート - Google Chrome","Chrome_WidgetWin_1"),0,0,0,0,0)
+//Chromeのウィンドウをアクティブにする(選択する)
+
+KBD(VK_CTRL,DOWN,30)
+KBD(VK_1,CLICK,30)
+KBD(VK_CTRL,UP,30)
+//「Ctrl」＋「1」を押下(Chromeで1つ目のタブを選択する)
+
+WHILE (CHKIMG("data\icon_spread-sheet.BMP")=FALSE)
+SLEEP(0.01)
+WEND
+
+KBD(VK_CTRL,DOWN,15)
+KBD(VK_C,DOWN,50)
+KBD(VK_CTRL,UP,15)
+KBD(VK_C,UP,15)
+//「Ctrl」＋「C」を押下して新規端末発送依頼シートのIMEIをコピーする
+
+SLEEP(0.5)
+
+KBD(VK_CTRL,DOWN,15)
+KBD(VK_2,CLICK,15)
+KBD(VK_CTRL,UP,15)
+//「Ctrl」＋「2」を押下(Chromeで2つ目のタブを選択する)
+
+WHILE (CHKIMG("data\icon_kintone.BMP")=FALSE)
+SLEEP(0.01)
+WEND
+
+KBD(VK_OEM_2,CLICK,15)
+//スラッシュキーを押下
+
+// KBD(VK_TAB,CLICK,15)
+// KBD(VK_TAB,CLICK,15)
+// KBD(VK_TAB,CLICK,15)
+// KBD(VK_TAB,CLICK,15)
+// KBD(VK_TAB,CLICK,15)
+
+// KBD(VK_TAB,CLICK,15)
+// KBD(VK_TAB,CLICK,15)
+// KBD(VK_TAB,CLICK,15)
+// KBD(VK_TAB,CLICK,15)
+// KBD(VK_TAB,CLICK,15)
+
+// KBD(VK_TAB,CLICK,15)
+// KBD(VK_TAB,CLICK,15)
+// //スラッシュの代わりにTABキーで検索
+
+
+KBD(VK_CTRL,DOWN,15)
+KBD(VK_V,CLICK,15)
+KBD(VK_CTRL,UP,15)
+//「Ctrl」＋「V」を押下
+
+KBD(VK_RETURN,CLICK,15)
+//Enterキーを押下
+
+//ここまででIMEI検索
+//検索結果が出るまで待機
+WHILE (CHKIMG("data\status_no-results.BMP")=FALSE)
+SLEEP(0.01)
+IF CHKIMG("data\status_found-results.BMP")=TRUE THEN BREAK
+WEND
+
+WHILE (CHKIMG("data\status_found-results.BMP")=FALSE)
+SLEEP(0.01)
+IF CHKIMG("data\status_no-results.BMP")=TRUE THEN BREAK
+WEND
+
+SLEEP(0.1)
+
+IFB CHKIMG("data\status_no-results.BMP")=FALSE
+	KBD(VK_TAB,CLICK,15)
+	KBD(VK_TAB,CLICK,15)
+	KBD(VK_TAB,CLICK,15)
+	KBD(VK_TAB,CLICK,15)
+	KBD(VK_TAB,CLICK,15)
+
+	KBD(VK_TAB,CLICK,15)
+	KBD(VK_TAB,CLICK,15)
+	KBD(VK_TAB,CLICK,15)
+	KBD(VK_TAB,CLICK,15)
+	KBD(VK_TAB,CLICK,15)
+
+	KBD(VK_TAB,CLICK,15)
+	KBD(VK_TAB,CLICK,15)
+	KBD(VK_TAB,CLICK,15)
+	KBD(VK_TAB,CLICK,15)
+	KBD(VK_TAB,CLICK,15)
+	KBD(VK_RETURN,CLICK,15)
+	//Tabキーを15回押した後、Enterキーでレコードの詳細を表示する
+
+	SLEEP(0.1)
+
+	//レコード詳細の表示まで待機
+	WHILE (CHKIMG("data\status_finish-loading-results.BMP")=FALSE)
+	SLEEP(0.01)
+	WEND
+
+	SLEEP(0.3)
+
+	KBD(VK_E,CLICK,150)
+	//「E」キーを押して編集画面に入る
+
+
+	// //「IMEI」欄をコピーする
+	// KBD(VK_CTRL,DOWN,15)
+	// KBD(VK_A,CLICK,15)
+	// KBD(VK_CTRL,UP,15)
+	// KBD(VK_CTRL,DOWN,15)
+	// KBD(VK_C,DOWN,15)
+	// KBD(VK_CTRL,UP,15)
+	// KBD(VK_C,UP,15)
+
+
+	KBD(VK_TAB,CLICK,15)
+	SLEEP(0.5)
+	KBD(VK_DELETE,CLICK,50)
+	SLEEP(0.5)
+	KBD(VK_CTRL,DOWN,15)
+	KBD(VK_V,DOWN,15)
+	KBD(VK_CTRL,UP,15)
+	KBD(VK_V,UP,15)
+	//「ルックアップ」欄にIMEIをコピーする
+
+	KBD(VK_TAB,CLICK,15)
+	KBD(VK_SPACE,CLICK,50)
+	//ルックアップを取得する
+
+	//ルックアップ取得まで待機
+	SLEEP(0.1)
+	WHILE (CHKIMG("data\lookup_nodata.BMP")=FALSE)
+	SLEEP(0.01)
+		IF CHKIMG("data\lookup_success.BMP")=TRUE OR CHKIMG("data\lookup_selection.BMP")=TRUE THEN BREAK
+	WEND
+	SLEEP(0.1)
+
+	SLEEP(0.1)
+	WHILE (CHKIMG("data\lookup_success.BMP")=FALSE)
+	SLEEP(0.01)
+		IF CHKIMG("data\lookup_nodata.BMP")=TRUE OR CHKIMG("data\lookup_selection.BMP")=TRUE THEN BREAK
+	WEND
+	SLEEP(0.1)
+
+	SLEEP(0.1)
+	WHILE (CHKIMG("data\lookup_selection.BMP")=FALSE)
+	SLEEP(0.01)
+		IF CHKIMG("data\lookup_nodata.BMP")=TRUE OR CHKIMG("data\lookup_success.BMP")=TRUE THEN BREAK
+	WEND
+	SLEEP(0.1)
+
+	IFB CHKIMG("data\lookup_nodata.BMP")=TRUE
+		// KBD(VK_SHIFT,DOWN,50)
+		// KBD(VK_TAB,DOWN,50)
+		// KBD(VK_SHIFT,UP,50)
+		// KBD(VK_TAB,UP,50)
+		// KBD(VK_DELETE,CLICK,50)
+		// KBD(VK_TAB,CLICK,50)
+
+		//「データがありません。」が出たらルックアップ欄削除
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_SPACE,CLICK,50)
+		SLEEP(0.1)
+		MMV(600, 589)
+		BTN(LEFT,CLICK)
+
+		SLEEP(0.1)
+
+
+		//「1回目交換履歴ルックアップ」をかけに行く
+
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+
+		// KBD(VK_TAB,CLICK,15)
+		// KBD(VK_TAB,CLICK,15)
+
+		KBD(VK_CTRL,DOWN,15)
+		KBD(VK_V,DOWN,15)
+		KBD(VK_CTRL,UP,15)
+		KBD(VK_V,UP,15)
+
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_SPACE,CLICK,50)
+
+		//ルックアップ取得まで待機
+		SLEEP(0.1)
+		WHILE (CHKIMG("data\lookup_nodata.BMP")=FALSE)
+		SLEEP(0.01)
+			IF CHKIMG("data\lookup_success.BMP")=TRUE OR CHKIMG("data\lookup_selection.BMP")=TRUE THEN BREAK
+		WEND
+		SLEEP(0.1)
+
+		SLEEP(0.1)
+		WHILE (CHKIMG("data\lookup_success.BMP")=FALSE)
+		SLEEP(0.01)
+			IF CHKIMG("data\lookup_nodata.BMP")=TRUE OR CHKIMG("data\lookup_selection.BMP")=TRUE THEN BREAK
+		WEND
+		SLEEP(0.1)
+
+		SLEEP(0.1)
+		WHILE (CHKIMG("data\lookup_selection.BMP")=FALSE)
+		SLEEP(0.01)
+			IF CHKIMG("data\lookup_nodata.BMP")=TRUE OR CHKIMG("data\lookup_success.BMP")=TRUE THEN BREAK
+		WEND
+		SLEEP(0.1)
+
+		IFB CHKIMG("data\lookup_selection.BMP")=TRUE
+			KBD(VK_TAB,CLICK,15)
+			KBD(VK_TAB,CLICK,15)
+			KBD(VK_TAB,CLICK,15)
+			KBD(VK_SPACE,CLICK,50)//ルックアップ選択画面が出たら一番上のレコードを選択する
+		ELSE
+			//ルックアップ選択画面が出なかったら何もしない
+		ENDIF
+		//ここまでルックアップを取得する
+
+		SLEEP(1)
+		//ルックアップ先自動入力プラグイン動作待ち
+
+
+		IFB CHKIMG("data\lookup_nodata_故障交換.BMP")=TRUE THEN
+			MSGBOX("ルックアップが掛けられませんでした。複数台契約か、端末未入庫の可能性があります。複数台契約の場合、当該端末に関しては、手動で「顧客使用中」に変更してください。その他処理も合わせて適切に行ってください。端末未入庫の場合は、入庫処理を行ってからマクロを回してください。プログラムを終了します。ひとつ下の行から再開してください。")
+			SLEEP(1)
+			DOSCMD("taskkill /im UWSC.exe /f")
+		// exitexit
+		
+
+		ENDIF
+
+
+
+		//「データがありません。」の場合はさすがに「1回目交換履歴ルックアップ」に居るだろうと信じてループ終了
+	
+	ELSE
+		//「データがありません。」が出なかった場合のみ他の動作を行う
+		IFB CHKIMG("data\lookup_selection.BMP")=TRUE
+			KBD(VK_TAB,CLICK,15)
+			KBD(VK_TAB,CLICK,15)
+			KBD(VK_TAB,CLICK,15)
+			KBD(VK_SPACE,CLICK,50)//ルックアップ選択画面が出たら一番上のレコードを選択する
+		ELSE
+			//ルックアップ選択画面が出なかったら何もしない
+		ENDIF
+
+		SLEEP(3)
+		//ルックアップ先自動入力プラグイン動作待ち
+
+
+		KBD(VK_TAB,CLICK,50)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+		KBD(VK_TAB,CLICK,15)
+
+		IFB CHKIMG("data\lookup_result_返却済.BMP")=TRUE OR  CHKIMG("data\lookup_result_解約済返却済.BMP")=TRUE OR CHKIMG("data\lookup_result_解約済.BMP")=TRUE OR CHKIMG("data\lookup_result_返送確認-解約.BMP")=TRUE
+			//ぽにゃぽにゃ(マクロを回す前に解約・検品完了していた場合)開始
+			IFB CHKIMG("data\device_status_顧客使用中.BMP")=TRUE
+				KBD(VK_RIGHT,CLICK,15)
+				KBD(VK_RIGHT,CLICK,15)
+				KBD(VK_RIGHT,CLICK,15)
+				KBD(VK_RIGHT,CLICK,15)
+			ELSE
+				//顧客使用中でない≒在庫U3とかその他速度出ないの場合は何もしない
+			ENDIF
+			//ぽにゃぽにゃ終了
+		ELSE
+
+			IFB CHKIMG("data\device_status_その他-速度出ない等.BMP")=TRUE AND CHKIMG("data\lookup_result_返却済.BMP")=FALSE AND CHKIMG("data\lookup_result_解約済返却済.BMP")=FALSE AND CHKIMG("data\lookup_result_解約済.BMP")=FALSE AND CHKIMG("data\lookup_result_返送確認-解約.BMP")=FALSE AND CHKIMG("data\lookup_result_返送確認-故障交換.BMP")=FALSE
+				KBD(VK_LEFT,CLICK,15)
+				KBD(VK_LEFT,CLICK,15)
+				KBD(VK_LEFT,CLICK,15)
+				KBD(VK_LEFT,CLICK,15)
+				KBD(VK_LEFT,CLICK,15)
+				KBD(VK_LEFT,CLICK,15)//もし検品時にステータスが「その他(速度出ない等)」にされていたら、その分左矢印キーを6回押下する
+			ELSE
+				//もし検品時にステータスが「その他(速度出ない等)」にされてなかったら、何もしない
+			ENDIF
+
+
+			IFB CHKIMG("data\device_status_顧客使用中.BMP")=FALSE
+				IFB CHKIMG("data\device_status_AiR-貸出用.BMP")=FALSE
+					KBD(VK_LEFT,CLICK,15)
+					KBD(VK_LEFT,CLICK,15)
+					KBD(VK_LEFT,CLICK,15)
+					KBD(VK_LEFT,CLICK,15)//最初からステータスが「顧客使用中」OR「AiR-WiFi貸出用」のどちらでもない場合のみ、左矢印キーを4回押下する
+				ELSE
+					//最初からステータスが「AiR-WiFi貸出用」にされていたら、何もしない
+				ENDIF
+			ELSE
+				//最初からステータスが「顧客使用中」にされていたら、何もしない
+			ENDIF
+
+		ENDIF
+
+
+	ENDIF
+
+
+	KBD(VK_CTRL,DOWN,50)
+	KBD(VK_S,CLICK,50)
+	KBD(VK_CTRL,UP,50)//顧客データを保存する
+
+	// 保存完了まで待機
+	WHILE (CHKIMG("data\status_save-complete.BMP")=FALSE)
+	SLEEP(0.01)
+	WEND
+
+ELSE
+	KBD(VK_TAB,CLICK,15)
+	KBD(VK_TAB,CLICK,15)
+	KBD(VK_TAB,CLICK,15)
+	KBD(VK_TAB,CLICK,15)
+	KBD(VK_TAB,CLICK,15)
+
+	KBD(VK_TAB,CLICK,15)
+	KBD(VK_TAB,CLICK,15)
+	KBD(VK_TAB,CLICK,15)
+	KBD(VK_TAB,CLICK,15)
+	KBD(VK_TAB,CLICK,15)
+
+	KBD(VK_TAB,CLICK,15)
+	KBD(VK_TAB,CLICK,15)
+	//検索結果無の場合はスラッシュの代わりにTABキーで検索
+ENDIF
+
+
+WHILE (CHKIMG("data\icon_spread-sheet.BMP")=FALSE)
+KBD(VK_CTRL,DOWN,50)
+KBD(VK_1,CLICK,50)
+KBD(VK_CTRL,UP,50)//格納庫に戻る
+SLEEP(0.5)
+WEND
+
+KBD(VK_DOWN,CLICK,50)//下矢印キーを1回押す
+SLEEP(0.5)
+
+// 空行があると無視してひとつ下の行に行く
+WHILE (CHKIMG("data\sheetCell-status_nodata.BMP")=TRUE AND CHKIMG("data\icon_spread-sheet.BMP")=TRUE)
+	KBD(VK_DOWN,CLICK,50)//下矢印キーを1回押す
+	SLEEP(0.1)
+	count = count + 1
+
+	IFB count > 500
+		//空行が500行続くとエラーで終了する
+			MSGBOX("空行が500行連続したと判定されました。マクロが最後まで回り終わった可能性が高いので、確認してください。プログラムを終了します。お疲れ様でした。")
+			SLEEP(1)
+			DOSCMD("taskkill /im UWSC.exe /f")
+		// exitexit
+	ELSE
+	ENDIF
+WEND
