@@ -18,6 +18,7 @@ KBD(VK_1,CLICK,30)
 KBD(VK_CTRL,UP,30)
 //「Ctrl」＋「1」を押下(Chromeで1つ目のタブを選択する)
 
+SLEEP(0.5)
 WHILE (CHKIMG("data\icon_spread-sheet.BMP")=FALSE)
 SLEEP(0.01)
 WEND
@@ -33,6 +34,7 @@ KBD(VK_2,CLICK,30)
 KBD(VK_CTRL,UP,30)
 //「Ctrl」＋「2」を押下(Chromeで2つ目のタブを選択する)
 
+SLEEP(0.5)
 WHILE (CHKIMG("data\icon_kintone.BMP")=FALSE)
 SLEEP(0.01)
 WEND
