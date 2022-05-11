@@ -71,6 +71,8 @@ SLEEP(0.01)
 IF CHKIMG("data\status_found-results.BMP")=TRUE THEN BREAK
 WEND
 
+SLEEP(0.1)
+
 WHILE (CHKIMG("data\status_found-results.BMP")=FALSE)
 SLEEP(0.01)
 IF CHKIMG("data\status_no-results.BMP")=TRUE THEN BREAK
