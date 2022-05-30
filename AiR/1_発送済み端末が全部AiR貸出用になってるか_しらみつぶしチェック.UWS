@@ -5,6 +5,8 @@ DIM count = 0
 STOPFORM(False)
 
 //Chromeのウィンドウをアクティブにする(選択する)
+FUKIDASI("Chromeのウィンドウをアクティブにしました。",100,100,0,20)
+SLEEP(1)
 ACW(GETID("[AiR] お客様管理シート - Google スプレッドシート - Google Chrome","Chrome_WidgetWin_1"),0,0,0,0,0)
 
 // // finallyを必ず実行してもらう
@@ -18,10 +20,11 @@ KBD(VK_1,CLICK,30)
 KBD(VK_CTRL,UP,30)
 //「Ctrl」＋「1」を押下(Chromeで1つ目のタブを選択する)
 
-SLEEP(0.5)
-// WHILE (CHKIMG("data\icon_spread-sheet.BMP")=FALSE)
-// SLEEP(0.01)
-// WEND
+STARTUP_CHKIMGX()
+WHILE (CHKIMGX("data\icon_spread-sheet.BMP",0,0,0,0,0,0,0.99)=FALSE)
+SLEEP(0.01)
+WEND
+SHUTDOWN_CHKIMGX()
 
 KBD(VK_CTRL,DOWN,15)
 KBD(VK_C,DOWN,50)
@@ -35,10 +38,13 @@ KBD(VK_CTRL,UP,30)
 //「Ctrl」＋「2」を押下(Chromeで2つ目のタブを選択する)
 
 SLEEP(0.5)
-// WHILE (CHKIMG("data\icon_kintone.BMP")=FALSE)
-// SLEEP(0.01)
-// WEND
+STARTUP_CHKIMGX()
+WHILE (CHKIMGX("data\icon_kintone.BMP",0,0,0,0,0,0,0.99)=FALSE)
+SLEEP(0.01)
+WEND
+SHUTDOWN_CHKIMGX()
 
+SLEEP(0.5)
 KBD(VK_OEM_2,CLICK,15)
 //スラッシュキーを押下
 
