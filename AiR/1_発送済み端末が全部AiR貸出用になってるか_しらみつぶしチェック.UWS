@@ -5,6 +5,8 @@ DIM count = 0
 STOPFORM(False)
 
 //Chromeのウィンドウをアクティブにする(選択する)
+FUKIDASI("Chromeのウィンドウをアクティブにしました。",500,100,0,24,"メイリオ",$000000,$FF4B00)
+SLEEP(1)
 ACW(GETID("[AiR] お客様管理シート - Google スプレッドシート - Google Chrome","Chrome_WidgetWin_1"),0,0,0,0,0)
 
 // // finallyを必ず実行してもらう
@@ -18,10 +20,16 @@ KBD(VK_1,CLICK,30)
 KBD(VK_CTRL,UP,30)
 //「Ctrl」＋「1」を押下(Chromeで1つ目のタブを選択する)
 
-SLEEP(0.5)
-// WHILE (CHKIMG("data\icon_spread-sheet.BMP")=FALSE)
-// SLEEP(0.01)
-// WEND
+FUKIDASI("スプレッドシートのアイコンを検索中………",500,100,0,24,"メイリオ",$000000,$03AF7A)
+STARTUP_CHKIMGX()
+WHILE (CHKIMGX("data\icon_spread-sheet.BMP",0,0,0,0,0,0,0.99)=FALSE)
+SLEEP(0.01)
+WEND
+SHUTDOWN_CHKIMGX()
+FUKIDASI("スプレッドシートのアイコンが見つかりました",500,100,0,24,"メイリオ",$000000,$FF4B00)
+SLEEP(1)
+FUKIDASI("端末管理のタブに移動を開始します………",500,100,0,24,"メイリオ",$000000,$03AF7A)
+SLEEP(1)
 
 KBD(VK_CTRL,DOWN,15)
 KBD(VK_C,DOWN,50)
@@ -34,11 +42,19 @@ KBD(VK_2,CLICK,30)
 KBD(VK_CTRL,UP,30)
 //「Ctrl」＋「2」を押下(Chromeで2つ目のタブを選択する)
 
-SLEEP(0.5)
-// WHILE (CHKIMG("data\icon_kintone.BMP")=FALSE)
-// SLEEP(0.01)
-// WEND
 
+SLEEP(0.5)
+STARTUP_CHKIMGX()
+WHILE (CHKIMGX("data\icon_kintone.BMP",0,0,0,0,0,0,0.99)=FALSE)
+SLEEP(0.01)
+WEND
+SHUTDOWN_CHKIMGX()
+
+FUKIDASI("端末管理のタブに移動を完了しました。",500,100,0,24,"メイリオ",$000000,$FF4B00)
+SLEEP(1)
+FUKIDASI("IMEI検索を開始します………………",500,100,0,24,"メイリオ",$000000,$03AF7A)
+
+SLEEP(0.5)
 KBD(VK_OEM_2,CLICK,15)
 //スラッシュキーを押下
 
@@ -66,6 +82,10 @@ KBD(VK_CTRL,UP,30)
 
 KBD(VK_RETURN,CLICK,30)
 //Enterキーを押下
+FUKIDASI("Enterキーが押下されました。",500,100,0,24,"メイリオ",$000000,$FF4B00)
+
+FUKIDASI("検索結果有無の判定処理を開始します………………",500,100,0,24,"メイリオ",$000000,$03AF7A)
+
 
 //ここまででIMEI検索
 WHILE (CHKIMG("data\status_no-results.BMP")=FALSE)
@@ -81,6 +101,7 @@ IF CHKIMG("data\status_no-results.BMP")=TRUE THEN BREAK
 WEND
 
 IFB CHKIMG("data\status_no-results.BMP")=FALSE
+	FUKIDASI("検索結果が見つかりました。詳細ページに移動します………………",500,100,0,24,"メイリオ",$000000,$FF4B00)
 	KBD(VK_TAB,CLICK,15)
 	KBD(VK_TAB,CLICK,15)
 	KBD(VK_TAB,CLICK,15)
@@ -106,6 +127,7 @@ IFB CHKIMG("data\status_no-results.BMP")=FALSE
 	SLEEP(0.01)
 	WEND
 
+	FUKIDASI("詳細ページのloadが完了しました。ステータス確認シーケンスを開始します………………",500,100,0,24,"メイリオ",$000000,$03AF7A)
 	SLEEP(0.3)
 
 
@@ -313,12 +335,19 @@ IFB CHKIMG("data\status_no-results.BMP")=FALSE
 	KBD(VK_S,CLICK,50)
 	KBD(VK_CTRL,UP,50)//顧客データを保存する
 
+	FUKIDASI("シーケンス完了。レコードを保存します…………………",500,100,0,24,"メイリオ",$000000,$03AF7A)
+	SLEEP(0.5)
 	// レコード保存完了まで待機
 	WHILE (CHKIMG("data\status_save-complete.BMP")=FALSE)
 	SLEEP(0.01)
 	WEND
+	FUKIDASI("レコード保存完了しました。",500,100,0,24,"メイリオ",$000000,$FF4B00)
+	SLEEP(1)
+	
 
 ELSE
+	FUKIDASI("検索結果がありませんでした。スプレッドシートのタブに戻る処理を開始します…………………",500,100,0,24,"メイリオ",$000000,$005AFF)
+	SLEEP(1)
 	KBD(VK_TAB,CLICK,15)
 	KBD(VK_TAB,CLICK,15)
 	KBD(VK_TAB,CLICK,15)
@@ -336,6 +365,8 @@ ELSE
 	//検索結果無の場合はスラッシュの代わりにTABキーで検索欄に先に移動しておく
 ENDIF
 
+FUKIDASI("端末管理側での処理が完了しました。スプレッドシートのタブに戻る処理を開始します…………………",500,100,0,24,"メイリオ",$000000,$03AF7A)
+SLEEP(1)
 
 WHILE (CHKIMG("data\icon_spread-sheet.BMP")=FALSE)
 KBD(VK_CTRL,DOWN,50)
@@ -344,11 +375,15 @@ KBD(VK_CTRL,UP,50)//格納庫に戻る
 SLEEP(0.5)
 WEND
 
+FUKIDASI("スプレッドシートのタブに戻りました。下矢印キーを押下して次のIMEIに移動します…………………",500,100,0,24,"メイリオ",$000000,$03AF7A)
 KBD(VK_DOWN,CLICK,50)//下矢印キーを1回押す
-SLEEP(0.5)
+SLEEP(1)
+FUKIDASI("下矢印キーの押下が完了しました。",500,100,0,24,"メイリオ",$000000,$FF4B00)
+SLEEP(1)
 
 // 空行があると無視してひとつ下の行に行く
 WHILE (CHKIMG("data\sheetCell-status_nodata.BMP")=TRUE AND CHKIMG("data\icon_spread-sheet.BMP")=TRUE)
+	FUKIDASI("直下のIMEIが空欄と判定されました。空欄でなくなるまで下矢印キーを押下します…………………",500,100,0,24,"メイリオ",$000000,$005AFF)
 	KBD(VK_DOWN,CLICK,50)//下矢印キーを1回押す
 	SLEEP(0.1)
 	count = count + 1
@@ -363,3 +398,6 @@ WHILE (CHKIMG("data\sheetCell-status_nodata.BMP")=TRUE AND CHKIMG("data\icon_spr
 	ENDIF
 WEND
 
+
+FUKIDASI("処理が一巡しました。",500,100,0,24,"メイリオ",$000000,$FF4B00)
+SLEEP(0.5)
