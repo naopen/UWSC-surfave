@@ -4,9 +4,13 @@ DIM count = 0
 // STOPウィンドウを非表示にする
 STOPFORM(False)
 
+//日本語入力OFFにする
+IF GETKEYSTATE(TGL_IME) THEN KBD(VK_KANJI, CLICK)
+
+
 //Chromeのウィンドウをアクティブにする(選択する)
 FUKIDASI("Chromeのウィンドウをアクティブにしました。",500,100,0,24,"メイリオ",$000000,$FF4B00)
-SLEEP(1)
+SLEEP(0.5)
 ACW(GETID("[AiR] お客様管理シート - Google スプレッドシート - Google Chrome","Chrome_WidgetWin_1"),0,0,0,0,0)
 
 // // finallyを必ず実行してもらう
@@ -16,7 +20,7 @@ ACW(GETID("[AiR] お客様管理シート - Google スプレッドシート - Google Chrome","Ch
 CALL ChkImgX.uws
 
 KBD(VK_CTRL,DOWN,150)
-KBD(VK_1,CLICK,30)
+KBD(VK_1,CLICK,50)
 KBD(VK_CTRL,UP,30)
 //「Ctrl」＋「1」を押下(Chromeで1つ目のタブを選択する)
 
@@ -27,8 +31,9 @@ SLEEP(0.01)
 WEND
 SHUTDOWN_CHKIMGX()
 FUKIDASI("スプレッドシートのアイコンが見つかりました",500,100,0,24,"メイリオ",$000000,$FF4B00)
-SLEEP(1)
-FUKIDASI("端末管理のタブに移動を開始します………",500,100,0,24,"メイリオ",$000000,$03AF7A)
+SLEEP(0.5)
+
+FUKIDASI("IMEIをコピーします………",500,100,0,24,"メイリオ",$000000,$03AF7A)
 SLEEP(1)
 
 KBD(VK_CTRL,DOWN,15)
@@ -37,8 +42,11 @@ KBD(VK_CTRL,UP,15)
 KBD(VK_C,UP,15)
 //「Ctrl」＋「C」を押下して新規端末発送依頼シートのIMEIをコピーする
 
+FUKIDASI("端末管理のタブに移動を開始します………",500,100,0,24,"メイリオ",$000000,$03AF7A)
+SLEEP(1)
+
 KBD(VK_CTRL,DOWN,30)
-KBD(VK_2,CLICK,30)
+KBD(VK_2,CLICK,50)
 KBD(VK_CTRL,UP,30)
 //「Ctrl」＋「2」を押下(Chromeで2つ目のタブを選択する)
 
