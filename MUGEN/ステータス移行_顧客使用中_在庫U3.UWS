@@ -7,18 +7,26 @@ STOPFORM(False)
 //日本語入力OFFにする
 IF GETKEYSTATE(TGL_IME) THEN KBD(VK_KANJI, CLICK)
 
-ACW(GETID("管理画面(格納庫)顧客一覧 - Google スプレッドシート - Google Chrome","Chrome_WidgetWin_1"),0,0,0,0,0)
 //Chromeのウィンドウをアクティブにする(選択する)
+ACW(GETID("管理画面(格納庫)顧客一覧 - Google スプレッドシート - Google Chrome","Chrome_WidgetWin_1"),0,0,0,0,0)
+FUKIDASI("Chromeのウィンドウをアクティブにしました。",500,100,0,24,"メイリオ",$000000,$FF4B00)
+
 
 KBD(VK_CTRL,DOWN,30)
 KBD(VK_1,CLICK,30)
 KBD(VK_CTRL,UP,30)
 //「Ctrl」＋「1」を押下(Chromeで1つ目のタブを選択する)
 
+FUKIDASI("スプレッドシートのアイコンを検索中………",500,100,0,24,"メイリオ",$000000,$03AF7A)
 SLEEP(0.5)
 WHILE (CHKIMG("data\icon_spread-sheet.BMP")=FALSE)
 SLEEP(0.01)
 WEND
+FUKIDASI("スプレッドシートのアイコンが見つかりました",500,100,0,24,"メイリオ",$000000,$FF4B00)
+SLEEP(0.5)
+
+FUKIDASI("IMEIをコピーします………",500,100,0,24,"メイリオ",$000000,$03AF7A)
+SLEEP(0.5)
 
 KBD(VK_CTRL,DOWN,15)
 KBD(VK_C,DOWN,50)
@@ -26,6 +34,7 @@ KBD(VK_CTRL,UP,15)
 KBD(VK_C,UP,15)
 //「Ctrl」＋「C」を押下して新規端末発送依頼シートのIMEIをコピーする
 
+FUKIDASI("端末管理のタブに移動を開始します………",500,100,0,24,"メイリオ",$000000,$03AF7A)
 SLEEP(0.5)
 
 KBD(VK_CTRL,DOWN,15)
@@ -37,6 +46,10 @@ SLEEP(0.5)
 WHILE (CHKIMG("data\icon_kintone.BMP")=FALSE)
 SLEEP(0.01)
 WEND
+
+FUKIDASI("端末管理のタブに移動を完了しました。",500,100,0,24,"メイリオ",$000000,$FF4B00)
+SLEEP(0.5)
+FUKIDASI("IMEI検索を開始します………………",500,100,0,24,"メイリオ",$000000,$03AF7A)
 
 KBD(VK_OEM_2,CLICK,15)
 //スラッシュキーを押下
@@ -57,6 +70,7 @@ KBD(VK_OEM_2,CLICK,15)
 // KBD(VK_TAB,CLICK,15)
 // //スラッシュの代わりにTABキーで検索
 
+SLEEP(0.5)
 
 KBD(VK_CTRL,DOWN,15)
 KBD(VK_V,CLICK,15)
