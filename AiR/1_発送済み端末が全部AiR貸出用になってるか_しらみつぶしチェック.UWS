@@ -108,6 +108,8 @@ SLEEP(0.01)
 IF CHKIMG("data\status_no-results.BMP")=TRUE THEN BREAK
 WEND
 
+SLEEP(0.1)
+
 IFB CHKIMG("data\status_no-results.BMP")=FALSE
 	FUKIDASI("検索結果が見つかりました。詳細ページに移動します………………",500,100,0,24,"メイリオ",$000000,$FF4B00)
 	KBD(VK_TAB,CLICK,15)
@@ -136,7 +138,7 @@ IFB CHKIMG("data\status_no-results.BMP")=FALSE
 	WEND
 
 	FUKIDASI("詳細ページのloadが完了しました。ステータス確認シーケンスを開始します………………",500,100,0,24,"メイリオ",$000000,$03AF7A)
-	SLEEP(0.3)
+	SLEEP(0.5)
 
 
 	KBD(VK_E,CLICK,150)
